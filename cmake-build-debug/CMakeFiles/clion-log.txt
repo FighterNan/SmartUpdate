@@ -1,4 +1,0 @@
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/zhoun14/Desktop/GithubWorkshop/PC/SmartUpdate
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/zhoun14/Desktop/GithubWorkshop/PC/SmartUpdate/cmake-build-debug
