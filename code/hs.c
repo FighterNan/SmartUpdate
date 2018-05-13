@@ -6,6 +6,7 @@
  *       Author: Yaxuan Qi
  *               Xiang Wang
  *               Xiaohe Hu
+ *               Nan Zhou
  *
  * Organization: Network Security Laboratory (NSLab),
  *               Research Institute of Information Technology (RIIT),
@@ -53,6 +54,11 @@ static struct {
     int segment_sum;
 } build_estimator;
 
+static struct {
+    float overlap_density[DIM_MAX];
+    size_t distribute[DIM_MAX];
+    int segment_sum;
+} update_estimator;
 
 static int seg_pnt_cmp(const void *a, const void *b)
 {
@@ -670,6 +676,113 @@ int estimate_build_hs_tree(const struct rule_set *rs, struct hs_node *cur_node) 
     return 0;
 }
 
+int estimate_update_hs_tree(const struct rule_set *rs, const struct rule_set *u_rs, struct hs_node *cur_node) {
+    int *wght, wght_all;
+    float wght_avg;
+    int max_pnt, num, pnt_num, d2s, d, i, j;
+
+    union point thresh;
+    struct rule_set child_rs;
+    struct seg_point *seg_pnts;
+    struct range lrange, rrange;
+
+    max_pnt = d2s = 0;
+    num = rs->num << 1;
+
+    wght_avg = rs->num + 1;
+
+    bzero(&lrange, sizeof(lrange));
+    bzero(&rrange, sizeof(rrange));
+
+    wght = malloc(num * sizeof(*wght));
+    seg_pnts  = malloc(num * sizeof(*seg_pnts));
+    child_rs.r_rules = malloc(rs->num * sizeof(*child_rs.r_rules));
+    if (wght == NULL || seg_pnts == NULL || child_rs.r_rules == NULL) {
+        SAFE_FREE(wght);
+        SAFE_FREE(seg_pnts);
+        SAFE_FREE(child_rs.r_rules);
+        return -1;
+    }
+
+    /*
+     * estimating starts here
+     */
+    update_estimator.segment_sum=0;
+    for (d = 0; d < DIM_MAX; d++) {
+        bzero(wght, num * sizeof(*wght));
+        bzero(seg_pnts, num * sizeof(*seg_pnts));
+
+        for (i = 0; i < num; i += 2) {
+            seg_pnts[i].pnt = rs->r_rules[i >> 1].dim[d][0];
+            seg_pnts[i].flag.begin = 1;
+            seg_pnts[i + 1].pnt = rs->r_rules[i >> 1].dim[d][1];
+            seg_pnts[i + 1].flag.end = 1;
+        }
+
+        qsort(seg_pnts, num, sizeof(*seg_pnts), seg_pnt_cmp);
+
+        /*
+         * make segments. Note: pnts with the same val may form one seg
+         *                Deal with the same val condition
+         *                Compact the seg_pnts
+         */
+
+        for (pnt_num = 0, i = pnt_num + 1; i < num; i++) {
+            if (is_equal(&seg_pnts[pnt_num].pnt, &seg_pnts[i].pnt)) {
+                seg_pnts[pnt_num].flag.begin |= seg_pnts[i].flag.begin;
+                seg_pnts[pnt_num].flag.end |= seg_pnts[i].flag.end;
+
+                if (i + 1 != num) {
+                    //when i is not the end, go to the next loop
+                    //pnt_num doesn't increase
+                    continue;
+                }
+
+                if (seg_pnts[pnt_num].flag.begin & seg_pnts[pnt_num].flag.end) {
+                    seg_pnts[pnt_num + 1] = seg_pnts[pnt_num];
+                    seg_pnts[pnt_num++].flag.end = 0;
+                    seg_pnts[pnt_num].flag.begin = 0;
+                }
+                break;
+            }
+            //the following statements only work
+            //when seg_pnts[pnt_num] is unequal to seg_pnts[i] or i == num-1
+            //when the former if is true, this if is true possibly
+            if (seg_pnts[pnt_num].flag.begin & seg_pnts[pnt_num].flag.end) {
+                seg_pnts[pnt_num + 1] = seg_pnts[pnt_num];
+                seg_pnts[pnt_num++].flag.end = 0;
+                seg_pnts[pnt_num].flag.begin = 0;
+            }
+            seg_pnts[++pnt_num] = seg_pnts[i];
+        }
+        if (++pnt_num > max_pnt) {
+            max_pnt = pnt_num;
+        }
+        if (pnt_num < 3) {
+            continue; /* skip this dim: no more ranges */
+        }
+        update_estimator.distribute[d]=pnt_num;
+        update_estimator.segment_sum+=pnt_num;
+
+        /*
+         * gen heuristic info
+         */
+        for (wght_all = 0, i = 0; i < pnt_num - 1; i++) {
+            for (wght[i] = 0, j = 0; j < rs->num; j++) {
+                if (is_less_equal(&u_rs->r_rules[j].dim[d][0],
+                                  &seg_pnts[i].pnt) &&
+                    is_greater_equal(&u_rs->r_rules[j].dim[d][1],
+                                     &seg_pnts[i + 1].pnt)) {
+                    wght[i]++;
+                    wght_all++;
+                }
+            }
+        }
+        update_estimator.overlap_density[d] = (float)wght_all / (u_rs->num - 1);
+    }
+    return 0;
+}
+
 int hs_build_estimate(const struct rule_set *rs, void *userdata) {
     int i;
     float time_base_operation = 10;
@@ -706,6 +819,45 @@ int hs_build_estimate(const struct rule_set *rs, void *userdata) {
 
 
 int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, void *userdata) {
+    int i;
+    float time_base_operation = 10;
+    float avg_density, estimate_build_time;
+    struct hs_node *root = calloc(1, sizeof(*root));
+
+    uint64_t timediff;
+    struct timeval starttime, stoptime;
+
+    if (root == NULL || rs->r_rules == NULL) {
+        return -1;
+    }
+
+    gettimeofday(&starttime, NULL);
+
+    if (estimate_update_hs_tree(rs, u_rs, root) == 0) {
+        printf("Overlap density = ");
+        for (i = 0; i < DIM_MAX; i++) {
+            printf("%f ", update_estimator.overlap_density[i]);
+        }
+        printf("\n");
+        printf("Distribute = ");
+        for (i = 0; i < DIM_MAX; i++) {
+            printf("%zu ", update_estimator.distribute[i]);
+        }
+        printf("\n");
+        avg_density=0;
+        for(i=0; i<DIM_MAX; ++i)
+            avg_density+=update_estimator.distribute[i]*update_estimator.overlap_density[i]
+                         /(float)update_estimator.segment_sum;
+        estimate_build_time=time_base_operation*u_rs->num*avg_density;
+        printf("Estimated time:%f \n", estimate_build_time);
+    } else {
+        *(struct hs_node **) userdata = NULL;
+        return -1;
+    }
+    gettimeofday(&stoptime, NULL);
+    timediff = make_timediff(&starttime, &stoptime);
+    printf("Estimating pass\n");
+    printf("Time for estimating: %llu(us)\n", timediff);
     return 0;
 }
 
