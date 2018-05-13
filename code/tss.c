@@ -190,14 +190,8 @@ int tss_build_estimate(const struct rule_set *rule_set, void *userdata) {
     struct tss_node *p_trav_tn = NULL, *p_tmp_tn = NULL;
     struct hash_entry *p_he = NULL;
 
-    if (*(void **) userdata == NULL) {
-        p_th = malloc(sizeof *p_th);
-        TAILQ_INIT(p_th);
-    } else {
-        p_th = *(typeof(p_th) *) userdata;
-        tuple_num = TAILQ_LAST(p_th, tss_head)->tpl_id;
-        tuple_num++;
-    }
+    p_th = malloc(sizeof *p_th);
+    TAILQ_INIT(p_th);
 
     for (i = 0; i < rule_set->num; i++) {
         /* traverse current tss hash_table list */
@@ -253,14 +247,8 @@ int tss_update_estimate(const struct rule_set *rule_set, const struct rule_set *
     struct tss_node *p_trav_tn = NULL, *p_tmp_tn = NULL;
     struct hash_entry *p_he = NULL;
 
-    if (*(void **) userdata == NULL) {
-        p_th = malloc(sizeof *p_th);
-        TAILQ_INIT(p_th);
-    } else {
-        p_th = *(typeof(p_th) *) userdata;
-        tuple_num = TAILQ_LAST(p_th, tss_head)->tpl_id;
-        tuple_num++;
-    }
+    p_th = malloc(sizeof *p_th);
+    TAILQ_INIT(p_th);
 
     for (i = 0; i < rule_set->num; i++) {
         /* traverse current tss hash_table list */
@@ -298,6 +286,9 @@ int tss_update_estimate(const struct rule_set *rule_set, const struct rule_set *
     printf("Original tuple num = %d\n", tuple_num);
     printf("Original rule num = %d\n", rule_set->num);
     u_tuple_num=tuple_num;
+
+    p_th = malloc(sizeof *p_th);
+    TAILQ_INIT(p_th);
 
     gettimeofday(&starttime, NULL);
     for (i = 0; i < u_rule_set->num; i++) {

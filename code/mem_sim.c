@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
     printf("Building pass\n");
     printf("Time for building: %llu(us)\n", timediff);
 
-    unload_rules(&rule_set);
+//    unload_rules(&rule_set);
 
     /*
      * Updating
