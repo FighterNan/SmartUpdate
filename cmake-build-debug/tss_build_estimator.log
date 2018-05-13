@@ -1,0 +1,247 @@
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1
+1835 rules loaded
+
+Estimate before building
+Tuple num = 80
+Rule num = 1835
+estimated time: 1435.599976
+Estimating pass
+Time for estimating: 937(us)
+
+Building
+tuple num = 80
+hash items:1248
+hash_overhead:117504 bytes; total memory:135812 bytes
+Building pass
+Time for building: 1018(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_100
+130 rules loaded
+
+Estimate before building
+Tuple num = 29
+Rule num = 130
+estimated time: 33.349998
+Estimating pass
+Time for estimating: 62(us)
+
+Building
+tuple num = 29
+hash items:130
+hash_overhead:23984 bytes; total memory:25846 bytes
+Building pass
+Time for building: 80(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_1k
+1226 rules loaded
+
+Estimate before building
+Tuple num = 69
+Rule num = 1226
+estimated time: 821.789978
+Estimating pass
+Time for estimating: 240(us)
+
+Building
+tuple num = 69
+hash items:1223
+hash_overhead:109768 bytes; total memory:127507 bytes
+Building pass
+Time for building: 697(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_10k
+12947 rules loaded
+
+Estimate before building
+Tuple num = 109
+Rule num = 12947
+estimated time: 14052.279297
+Estimating pass
+Time for estimating: 2436(us)
+
+Building
+tuple num = 109
+hash items:12931
+hash_overhead:841192 bytes; total memory:1028542 bytes
+Building pass
+Time for building: 8425(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/fw1
+915 rules loaded
+
+Estimate before building
+Tuple num = 222
+Rule num = 915
+estimated time: 1783.770020
+Estimating pass
+Time for estimating: 1141(us)
+
+Building
+tuple num = 222
+hash items:915
+hash_overhead:179112 bytes; total memory:191901 bytes
+Building pass
+Time for building: 1269(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/fw1_100
+303 rules loaded
+
+Estimate before building
+Tuple num = 174
+Rule num = 303
+estimated time: 374.970001
+Estimating pass
+Time for estimating: 337(us)
+
+Building
+tuple num = 174
+hash items:303
+hash_overhead:117192 bytes; total memory:121018 bytes
+Building pass
+Time for building: 397(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/fw1_1k
+3307 rules loaded
+
+Estimate before building
+Tuple num = 225
+Rule num = 3307
+estimated time: 7186.500000
+Estimating pass
+Time for estimating: 2737(us)
+
+Building
+tuple num = 225
+hash items:3307
+hash_overhead:316328 bytes; total memory:363815 bytes
+Building pass
+Time for building: 3342(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/fw1_10k
+32136 rules loaded
+
+Estimate before building
+Tuple num = 238
+Rule num = 32136
+estimated time: 76199.265625
+Estimating pass
+Time for estimating: 26750(us)
+
+Building
+tuple num = 238
+hash items:32136
+hash_overhead:2030400 bytes; total memory:2492422 bytes
+Building pass
+Time for building: 34445(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/fw1
+915 rules loaded
+
+Estimate before building
+Tuple num = 222
+Rule num = 915
+estimated time: 1783.770020
+Estimating pass
+Time for estimating: 1156(us)
+
+Building
+tuple num = 222
+hash items:915
+hash_overhead:179112 bytes; total memory:191901 bytes
+Building pass
+Time for building: 1246(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1
+2180 rules loaded
+
+Estimate before building
+Tuple num = 244
+Rule num = 2180
+estimated time: 5020.299805
+Estimating pass
+Time for estimating: 2294(us)
+
+Building
+tuple num = 244
+hash items:2180
+hash_overhead:263648 bytes; total memory:293985 bytes
+Building pass
+Time for building: 2350(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_100
+146 rules loaded
+
+Estimate before building
+Tuple num = 55
+Rule num = 146
+estimated time: 64.900002
+Estimating pass
+Time for estimating: 96(us)
+
+Building
+tuple num = 55
+hash items:146
+hash_overhead:39856 bytes; total memory:41839 bytes
+Building pass
+Time for building: 118(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_1k
+1223 rules loaded
+
+Estimate before building
+Tuple num = 186
+Rule num = 1223
+estimated time: 2100.869873
+Estimating pass
+Time for estimating: 707(us)
+
+Building
+tuple num = 186
+hash items:1223
+hash_overhead:175624 bytes; total memory:192433 bytes
+Building pass
+Time for building: 1100(us)
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_10k
+12127 rules loaded
+
+Estimate before building
+Tuple num = 310
+Rule num = 12127
+estimated time: 37111.648438
+Estimating pass
+Time for estimating: 8511(us)
+
+Building
+tuple num = 310
+hash items:12127
+hash_overhead:883272 bytes; total memory:1051692 bytes
+Building pass
+Time for building: 15880(us)

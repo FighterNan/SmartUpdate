@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/SmartUpdate.dir/code/hs.c.o CMakeFiles/SmartUpdate.dir/code/mem_sim.c.o CMakeFiles/SmartUpdate.dir/code/pc_eval.c.o CMakeFiles/SmartUpdate.dir/code/tss.c.o CMakeFiles/SmartUpdate.dir/code/utils.c.o  -o SmartUpdate 
