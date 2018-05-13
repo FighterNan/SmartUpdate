@@ -180,7 +180,7 @@ int tss_build(const struct rule_set *rs, void *userdata)
 
 int tss_build_estimate(const struct rule_set *rule_set, void *userdata) {
     int tuple_num, rule_num, i, tpl_exist, j;
-    float estimate_build_time;
+    double estimate_build_time;
     float time_base_operation = 0.01;
     char *key;
 
