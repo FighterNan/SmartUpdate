@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 1.0)
 project(SmartUpdate)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -13,5 +13,4 @@ add_executable(SmartUpdate
         code/tss.h
         code/uthash.h
         code/utils.c
-        code/utils.h
-        README.md)
+        code/utils.h)
