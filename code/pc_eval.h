@@ -5,6 +5,7 @@
  *       Author: Xiang Wang
  *               Chang Chen
  *               Xiaohe Hu
+ *               Nan Zhou
  *
  * Organization: Network Security Laboratory (NSLab),
  *               Research Institute of Information Technology (RIIT),
@@ -54,11 +55,12 @@ enum {
     ALGO_NUM = 2
 };
 
+// smart-update
 enum {
     SLEEP = 0,
     ENABLE = 1,
-    ESTIMATE_MODE_NUM = 2
-
+    ESTIMATE_MODE_NUM = 2,
+//    ADAPTED_RULE_NUM = 100
 };
 
 enum {

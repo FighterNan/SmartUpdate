@@ -117,6 +117,8 @@ int main(int argc, char *argv[])
     struct trace t;
     void *root = NULL, *root_for_estimating = NULL;
 
+    printf("****************************** start *********************************\n");
+
     if (argc < 2) {
         print_help();
         exit(-1);
@@ -192,9 +194,7 @@ int main(int argc, char *argv[])
             printf("\n");
             printf("Estimate before updating\n");
 
-            root_for_estimating = NULL;
-
-            if (algrthms[cfg.algrthm_id].update_estimate(&rule_set, &u_rule_set, &root_for_estimating) != 0) {
+            if (algrthms[cfg.algrthm_id].update_estimate(&rule_set, &u_rule_set, &root) != 0) {
                 fprintf(stderr, "Updating estimating failed\n");
                 unload_rules(&rule_set);
                 exit(-1);
@@ -224,6 +224,7 @@ int main(int argc, char *argv[])
      */
     if (cfg.trace_file == NULL) {
         algrthms[cfg.algrthm_id].cleanup(&root);
+        printf("****************************** end *********************************\n");
         return 0;
     }
 
@@ -248,5 +249,6 @@ int main(int argc, char *argv[])
     unload_trace(&t);
     algrthms[cfg.algrthm_id].cleanup(&root);
 
+    printf("****************************** end *********************************\n");
     return 0;
 }
