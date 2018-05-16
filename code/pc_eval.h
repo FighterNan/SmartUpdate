@@ -60,7 +60,7 @@ enum {
     SLEEP = 0,
     ENABLE = 1,
     ESTIMATE_MODE_NUM = 2,
-//    ADAPTED_RULE_NUM = 100
+    ADAPTED_RULE_NUM = 100
 };
 
 enum {

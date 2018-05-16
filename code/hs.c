@@ -831,6 +831,7 @@ int hs_build_estimate(const struct rule_set *rs, void *userdata) {
 //    uint64_t timediff;
 //    struct timeval starttime, stoptime;
 //    int num = ADAPTED_RULE_NUM<u_rs->num?ADAPTED_RULE_NUM:u_rs->num;
+////    int num = u_rs->num/100;
 //    int rand_index[num];
 //    int i, j;
 //
@@ -881,6 +882,13 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
 
     gettimeofday(&starttime, NULL);
 
+//    // method 1
+//    time_base_operation = get_base_operation(u_rs, userdata);
+//    estimate_build_time = u_rs->num*time_base_operation;
+//    printf("Base operation = %f \n", time_base_operation);
+//    printf("Estimated time:%f \n", estimate_build_time);
+
+//     method 2
     if (estimate_update_hs_tree(rs, u_rs, root) == 0) {
         printf("Overlap density = ");
         for (i = 0; i < DIM_MAX; i++) {
@@ -912,7 +920,7 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
     gettimeofday(&stoptime, NULL);
     timediff = make_timediff(&starttime, &stoptime);
     printf("Estimating pass\n");
-    printf("Time for estimating: %llu(us)\n", timediff);
+    printf("Time for estimating(us): %llu\n", timediff);
     return 0;
 }
 
