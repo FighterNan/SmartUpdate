@@ -179,7 +179,7 @@ int tss_build(const struct rule_set *rs, void *userdata)
 }
 
 int tss_build_estimate(const struct rule_set *rule_set, void *userdata) {
-    int tuple_num, rule_num, i, tpl_exist, j;
+    int tuple_num, i, tpl_exist, j;
     double estimate_build_time;
     float time_base_operation = 0.01;
     char *key;
@@ -234,7 +234,7 @@ int tss_build_estimate(const struct rule_set *rule_set, void *userdata) {
 }
 
 int tss_update_estimate(const struct rule_set *rule_set, const struct rule_set *u_rule_set, void *userdata) {
-    int tuple_num, rule_num, u_tuple_num, u_rule_num, i, tpl_exist, j;
+    int tuple_num, u_tuple_num, i, tpl_exist, j;
     float estimate_update_time;
     float time_base_operation = 0.01;
     char *key;
@@ -250,6 +250,8 @@ int tss_update_estimate(const struct rule_set *rule_set, const struct rule_set *
     p_th = malloc(sizeof *p_th);
     TAILQ_INIT(p_th);
 
+    tuple_num=0;
+    u_tuple_num=0;
     for (i = 0; i < rule_set->num; i++) {
         /* traverse current tss hash_table list */
         tpl_exist = 0;

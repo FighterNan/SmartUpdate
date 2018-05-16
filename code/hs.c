@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/queue.h>
+#include <time.h>
 #include "hs.h"
 #include "utils.h"
 
@@ -52,12 +53,13 @@ static struct {
     float overlap_density[DIM_MAX];
     size_t distribute[DIM_MAX];
     int segment_sum;
+    int choose[DIM_MAX];
+    int choose_num;
 } build_estimator;
 
 static struct {
     float overlap_density[DIM_MAX];
     size_t distribute[DIM_MAX];
-    int segment_sum;
 } update_estimator;
 
 static int seg_pnt_cmp(const void *a, const void *b)
@@ -249,6 +251,8 @@ static int build_hs_tree(
     }
 
     cur_node->d2s = d2s;
+    build_estimator.choose[d2s]++;
+    build_estimator.choose_num++;
     cur_node->depth = depth;
     cur_node->thresh = thresh;
 
@@ -386,6 +390,11 @@ int hs_build(const struct rule_set *rs, void *userdata)
     }
 
     g_statistics.segment_total = 1;
+
+    // init
+    for (i=0; i<DIM_MAX; ++i) {
+        build_estimator.choose[i]=0;
+    }
 
     if (build_hs_tree(rs, root, 0) == 0) {
         /* rule_set statistics */
@@ -707,7 +716,6 @@ int estimate_update_hs_tree(const struct rule_set *rs, const struct rule_set *u_
     /*
      * estimating starts here
      */
-    update_estimator.segment_sum=0;
     for (d = 0; d < DIM_MAX; d++) {
         bzero(wght, num * sizeof(*wght));
         bzero(seg_pnts, num * sizeof(*seg_pnts));
@@ -762,13 +770,12 @@ int estimate_update_hs_tree(const struct rule_set *rs, const struct rule_set *u_
             continue; /* skip this dim: no more ranges */
         }
         update_estimator.distribute[d]=pnt_num;
-        update_estimator.segment_sum+=pnt_num;
 
         /*
          * gen heuristic info
          */
         for (wght_all = 0, i = 0; i < pnt_num - 1; i++) {
-            for (wght[i] = 0, j = 0; j < rs->num; j++) {
+            for (wght[i] = 0, j = 0; j < u_rs->num; j++) {
                 if (is_less_equal(&u_rs->r_rules[j].dim[d][0],
                                   &seg_pnts[i].pnt) &&
                     is_greater_equal(&u_rs->r_rules[j].dim[d][1],
@@ -808,6 +815,8 @@ int hs_build_estimate(const struct rule_set *rs, void *userdata) {
         for(i=0; i<DIM_MAX; ++i)
             avg_density+=build_estimator.distribute[i]*build_estimator.overlap_density[i]
                          /(float)build_estimator.segment_sum;
+        printf("Average density = %f \n", avg_density);
+        printf("Building rule num = %d \n", rs->num);
         estimate_build_time=time_base_operation*rs->num*avg_density;
         printf("Estimated time:%f \n", estimate_build_time);
     } else {
@@ -817,10 +826,50 @@ int hs_build_estimate(const struct rule_set *rs, void *userdata) {
     return 0;
 }
 
+//float get_base_operation(const struct rule_set *u_rs, void *userdata) {
+//
+//    uint64_t timediff;
+//    struct timeval starttime, stoptime;
+//    int num = ADAPTED_RULE_NUM<u_rs->num?ADAPTED_RULE_NUM:u_rs->num;
+////    int num = u_rs->num/100;
+//    int rand_index[num];
+//    int i, j;
+//
+//    if (!*(void **) userdata || !u_rs->r_rules) return -1;
+//
+//    // randomly choose ADAPTED_RULE_NUM rules from u_rs
+//    srand((int)time(0));
+//    rand_index[0]=rand()%u_rs->num+1;
+//    for(i=1; i<num; ++i)
+//    {
+//        rand_index[i]=rand()%u_rs->num+1;
+//        for(j=0;j<i;j++)
+//        {
+//            if(rand_index[i]==rand_index[j])
+//            {
+//                i--;
+//            }
+//        }
+//    }
+//
+//    gettimeofday(&starttime, NULL);
+//
+//    for (i = 0; i < num; i++) {
+//        if (hs_insrt_rule(&u_rs->r_rules[rand_index[i]], userdata) != 0) {
+//            return -1;
+//        }
+//    }
+//    gettimeofday(&stoptime, NULL);
+//    timediff = make_timediff(&starttime, &stoptime);
+//
+//    return timediff/(float)num;
+//}
 
 int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, void *userdata) {
     int i;
-    float time_base_operation = 10;
+
+    float time_base_operation = 1;
+    int thresh = 40;
     float avg_density, estimate_build_time;
     struct hs_node *root = calloc(1, sizeof(*root));
 
@@ -833,21 +882,35 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
 
     gettimeofday(&starttime, NULL);
 
+//    // method 1
+//    time_base_operation = get_base_operation(u_rs, userdata);
+//    estimate_build_time = u_rs->num*time_base_operation;
+//    printf("Base operation = %f \n", time_base_operation);
+//    printf("Estimated time:%f \n", estimate_build_time);
+
+//     method 2
     if (estimate_update_hs_tree(rs, u_rs, root) == 0) {
         printf("Overlap density = ");
         for (i = 0; i < DIM_MAX; i++) {
             printf("%f ", update_estimator.overlap_density[i]);
         }
         printf("\n");
-        printf("Distribute = ");
+        printf("Choose = ");
         for (i = 0; i < DIM_MAX; i++) {
-            printf("%zu ", update_estimator.distribute[i]);
+            printf("%d ", build_estimator.choose[i]);
         }
         printf("\n");
         avg_density=0;
         for(i=0; i<DIM_MAX; ++i)
-            avg_density+=update_estimator.distribute[i]*update_estimator.overlap_density[i]
-                         /(float)update_estimator.segment_sum;
+            avg_density+=build_estimator.choose[i]*update_estimator.overlap_density[i]
+                         /(float)build_estimator.choose_num;
+        printf("Average density = %f \n", avg_density);
+        printf("Updating rule num = %d \n", u_rs->num);
+
+        if (avg_density > thresh)
+            time_base_operation=10;
+
+        printf("Adapted base operation = %f \n", time_base_operation);
         estimate_build_time=time_base_operation*u_rs->num*avg_density;
         printf("Estimated time:%f \n", estimate_build_time);
     } else {
@@ -857,7 +920,7 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
     gettimeofday(&stoptime, NULL);
     timediff = make_timediff(&starttime, &stoptime);
     printf("Estimating pass\n");
-    printf("Time for estimating: %llu(us)\n", timediff);
+    printf("Time for estimating(us): %llu\n", timediff);
     return 0;
 }
 
