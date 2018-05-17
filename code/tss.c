@@ -71,7 +71,7 @@ static void swap_tss_node(struct tss_node *p_l_tn, struct tss_node *p_r_tn)
 /* partition list to let left elements <= pivot <= right elements */
 static struct tss_node *part_tss_list(struct tss_head *p_th, struct tss_node *p_l_tn, struct tss_node *p_r_tn)
 {
-    /* we choose p_r_tn's highest_pri as pivot value */
+    /* we meet p_r_tn's highest_pri as pivot value */
     struct tss_node *p_pivot_tn = p_l_tn, *p_trav_tn = p_l_tn;
     while (p_trav_tn != p_r_tn) {
         if (p_trav_tn->highest_pri < p_r_tn->highest_pri) {

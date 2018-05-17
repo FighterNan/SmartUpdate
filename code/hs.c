@@ -54,12 +54,16 @@ static struct {
     size_t distribute[DIM_MAX];
     int segment_sum;
     int choose[DIM_MAX];
-    int choose_num;
+    size_t avg_choose_depth;
+    size_t choose_num;
+    struct seg_point *seg_pnts;
 } build_estimator;
 
 static struct {
     float overlap_density[DIM_MAX];
     size_t distribute[DIM_MAX];
+    int meet[DIM_MAX];
+    size_t meet_num;
 } update_estimator;
 
 static int seg_pnt_cmp(const void *a, const void *b)
@@ -175,6 +179,7 @@ static int build_hs_tree(
             g_statistics.segment_total *= pnt_num;
         }
 
+
         if (pnt_num < 3) {
             continue; /* skip this dim: no more ranges */
         }
@@ -253,8 +258,10 @@ static int build_hs_tree(
     cur_node->d2s = d2s;
     build_estimator.choose[d2s]++;
     build_estimator.choose_num++;
+    build_estimator.avg_choose_depth+=depth;
     cur_node->depth = depth;
     cur_node->thresh = thresh;
+
 
     /*
      * gen left child
@@ -685,6 +692,7 @@ int estimate_build_hs_tree(const struct rule_set *rs, struct hs_node *cur_node) 
     return 0;
 }
 
+
 int estimate_update_hs_tree(const struct rule_set *rs, const struct rule_set *u_rs, struct hs_node *cur_node) {
     int *wght, wght_all;
     float wght_avg;
@@ -782,6 +790,8 @@ int estimate_update_hs_tree(const struct rule_set *rs, const struct rule_set *u_
                                      &seg_pnts[i + 1].pnt)) {
                     wght[i]++;
                     wght_all++;
+                    update_estimator.meet[d]+=1;
+                    update_estimator.meet_num+=1;
                 }
             }
         }
@@ -837,7 +847,7 @@ int hs_build_estimate(const struct rule_set *rs, void *userdata) {
 //
 //    if (!*(void **) userdata || !u_rs->r_rules) return -1;
 //
-//    // randomly choose ADAPTED_RULE_NUM rules from u_rs
+//    // randomly meet ADAPTED_RULE_NUM rules from u_rs
 //    srand((int)time(0));
 //    rand_index[0]=rand()%u_rs->num+1;
 //    for(i=1; i<num; ++i)
@@ -869,8 +879,8 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
     int i;
 
     float time_base_operation = 1;
-    int thresh_1 = 50;
-    int thresh_2 = 140;
+//    int thresh_1 = 50;
+//    int thresh_2 = 140;
     float avg_density, estimate_build_time;
     struct hs_node *root = calloc(1, sizeof(*root));
 
@@ -879,6 +889,11 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
 
     if (root == NULL || rs->r_rules == NULL) {
         return -1;
+    }
+
+    // init
+    for (i=0; i<DIM_MAX; ++i) {
+        update_estimator.meet[i]=0;
     }
 
     gettimeofday(&starttime, NULL);
@@ -896,27 +911,50 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
             printf("%f ", update_estimator.overlap_density[i]);
         }
         printf("\n");
-        printf("Choose = ");
+//        printf("Choose = ");
+//        for (i = 0; i < DIM_MAX; i++) {
+//            printf("%d ", build_estimator.choose[i]);
+//        }
+//        printf("\n");
+//        printf("Choose num = %lu\n", build_estimator.choose_num);
+
+        printf("Meet = ");
         for (i = 0; i < DIM_MAX; i++) {
-            printf("%d ", build_estimator.choose[i]);
+            printf("%d ", update_estimator.meet[i]);
         }
         printf("\n");
+        printf("Meet num = %lu\n", update_estimator.meet_num);
+
+
+        printf("Average seg depth = %f\n", build_estimator.avg_choose_depth / (double)build_estimator.choose_num);
+
+//        avg_density=0;
+//        for(i=0; i<DIM_MAX; ++i)
+//            avg_density+=build_estimator.choose[i]*update_estimator.overlap_density[i]
+//                         /(float)build_estimator.choose_num;
+//
+//        printf("Average density(by choose) = %f\n", avg_density);
+
         avg_density=0;
         for(i=0; i<DIM_MAX; ++i)
-            avg_density+=build_estimator.choose[i]*update_estimator.overlap_density[i]
-                         /(float)build_estimator.choose_num;
-        printf("Average density = %f\n", avg_density);
+            avg_density+=update_estimator.meet[i]*update_estimator.overlap_density[i]
+                         /(float)update_estimator.meet_num;
+        printf("Average density(by meet) = %f\n", avg_density);
+
         printf("Updating rule num = %d\n", u_rs->num);
 
-        if (avg_density > thresh_1)
-            time_base_operation*=10;
-
-        if (avg_density > thresh_2)
-            time_base_operation*=10;
+//        if (avg_density > thresh_1)
+//            time_base_operation*=10;
+//
+//        if (avg_density > thresh_2)
+//            time_base_operation*=10;
 
         printf("Adapted base operation = %f \n", time_base_operation);
         estimate_build_time=time_base_operation*u_rs->num*avg_density;
         printf("Estimated time:%f \n", estimate_build_time);
+        estimate_build_time=time_base_operation*u_rs->num*avg_density;
+        printf("Estimated time:%f \n", estimate_build_time);
+
     } else {
         *(struct hs_node **) userdata = NULL;
         return -1;
