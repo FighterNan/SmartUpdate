@@ -869,7 +869,8 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
     int i;
 
     float time_base_operation = 1;
-    int thresh = 40;
+    int thresh_1 = 50;
+    int thresh_2 = 140;
     float avg_density, estimate_build_time;
     struct hs_node *root = calloc(1, sizeof(*root));
 
@@ -904,11 +905,14 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
         for(i=0; i<DIM_MAX; ++i)
             avg_density+=build_estimator.choose[i]*update_estimator.overlap_density[i]
                          /(float)build_estimator.choose_num;
-        printf("Average density = %f \n", avg_density);
-        printf("Updating rule num = %d \n", u_rs->num);
+        printf("Average density = %f\n", avg_density);
+        printf("Updating rule num = %d\n", u_rs->num);
 
-        if (avg_density > thresh)
-            time_base_operation=10;
+        if (avg_density > thresh_1)
+            time_base_operation*=10;
+
+        if (avg_density > thresh_2)
+            time_base_operation*=10;
 
         printf("Adapted base operation = %f \n", time_base_operation);
         estimate_build_time=time_base_operation*u_rs->num*avg_density;
