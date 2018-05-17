@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
         gettimeofday(&stoptime, NULL);
         timediff = make_timediff(&starttime, &stoptime);
         printf("Estimating pass\n");
-        printf("Time for estimating: %llu(us)\n", timediff);
+        printf("Time for estimating(us): %llu\n", timediff);
 
     }
 
@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
     timediff = make_timediff(&starttime, &stoptime);
 
     printf("Building pass\n");
-    printf("Time for building: %llu(us)\n", timediff);
+    printf("Time for building(us): %llu\n", timediff);
 
 //    unload_rules(&rule_set);
 
@@ -214,7 +214,7 @@ int main(int argc, char *argv[])
         timediff = make_timediff(&starttime, &stoptime);
 
         printf("Updating pass\n");
-        printf("Time for updating: %llu(us)\n", timediff);
+        printf("Time for updating(us): %llu\n", timediff);
 
         unload_rules(&u_rule_set);
     }
@@ -243,8 +243,8 @@ int main(int argc, char *argv[])
     timediff = make_timediff(&starttime, &stoptime);
 
     printf("Searching pass\n");
-    printf("Time for searching: %llu(us)\n", timediff);
-    printf("Searching speed: %lld(pps)\n", (t.num * 1000000ULL) / timediff);
+    printf("Time for searching(us): %llu\n", timediff);
+    printf("Searching speed(pps): %lld\n", (t.num * 1000000ULL) / timediff);
 
     unload_trace(&t);
     algrthms[cfg.algrthm_id].cleanup(&root);
