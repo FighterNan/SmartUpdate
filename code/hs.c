@@ -953,7 +953,7 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
 
         printf("Base operation = %f \n", time_base_operation);
 
-        if(avg_density>100)
+        if(avg_density>200)
             adapted_factor = 10;
         printf("Adapted factor = %f \n", adapted_factor);
         estimate_build_time=adapted_factor*time_base_operation*u_rs->num*avg_density;
