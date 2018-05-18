@@ -18,6 +18,7 @@
 #include <string.h>
 #include <sys/queue.h>
 #include <time.h>
+#include <math.h>
 #include "hs.h"
 #include "utils.h"
 
@@ -879,6 +880,7 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
     int i;
 
     float time_base_operation = 1;
+    float adapted_factor = 1;
 //    int thresh_1 = 50;
 //    int thresh_2 = 140;
     float avg_density, estimate_build_time;
@@ -949,10 +951,12 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
 //        if (avg_density > thresh_2)
 //            time_base_operation*=10;
 
-        printf("Adapted base operation = %f \n", time_base_operation);
-        estimate_build_time=time_base_operation*u_rs->num*avg_density;
-        printf("Estimated time:%f \n", estimate_build_time);
-        estimate_build_time=time_base_operation*u_rs->num*avg_density;
+        printf("Base operation = %f \n", time_base_operation);
+
+        if(avg_density>100)
+            adapted_factor = 10;
+        printf("Adapted factor = %f \n", adapted_factor);
+        estimate_build_time=adapted_factor*time_base_operation*u_rs->num*avg_density;
         printf("Estimated time:%f \n", estimate_build_time);
 
     } else {
