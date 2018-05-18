@@ -58,6 +58,7 @@ static struct {
     size_t avg_choose_depth;
     size_t choose_num;
     struct seg_point *seg_pnts;
+    float avg_density;
 } build_estimator;
 
 static struct {
@@ -826,6 +827,7 @@ int hs_build_estimate(const struct rule_set *rs, void *userdata) {
         for(i=0; i<DIM_MAX; ++i)
             avg_density+=build_estimator.distribute[i]*build_estimator.overlap_density[i]
                          /(float)build_estimator.segment_sum;
+        build_estimator.avg_density = avg_density;
         printf("Average density = %f \n", avg_density);
         printf("Building rule num = %d \n", rs->num);
         estimate_build_time=time_base_operation*rs->num*avg_density;
@@ -900,7 +902,7 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
 
     gettimeofday(&starttime, NULL);
 
-//    // method 1
+//    // method 1, does not work
 //    time_base_operation = get_base_operation(u_rs, userdata);
 //    estimate_build_time = u_rs->num*time_base_operation;
 //    printf("Base operation = %f \n", time_base_operation);
@@ -945,16 +947,19 @@ int hs_update_estimate(const struct rule_set *rs, const struct rule_set *u_rs, v
 
         printf("Updating rule num = %d\n", u_rs->num);
 
-//        if (avg_density > thresh_1)
-//            time_base_operation*=10;
-//
-//        if (avg_density > thresh_2)
-//            time_base_operation*=10;
-
         printf("Base operation = %f \n", time_base_operation);
 
-        if(avg_density>200)
+        // adapting...
+        if(build_estimator.avg_density<20)
+            adapted_factor = 0.1;
+        if(build_estimator.avg_density>30)// && build_estimator.avg_density<50)
+            adapted_factor = 6;
+        if(build_estimator.avg_density>90)// && build_estimator.avg_density<100)
+            adapted_factor = 7;
+        if(build_estimator.avg_density>200)// && build_estimator.avg_density<300)
             adapted_factor = 10;
+
+
         printf("Adapted factor = %f \n", adapted_factor);
         estimate_build_time=adapted_factor*time_base_operation*u_rs->num*avg_density;
         printf("Estimated time:%f \n", estimate_build_time);
