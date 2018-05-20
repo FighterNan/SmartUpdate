@@ -228,8 +228,8 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+    printf("\n");
     load_trace(&t, cfg.trace_file);
-
     printf("Searching\n");
 
     gettimeofday(&starttime, NULL);
