@@ -17,5 +17,5 @@ with open(sys.argv[1], 'r') as fi:
         t += rule[3].split('/')[1]
         tuples.add(t)
 
-print tuples
-print 'tuple number:', len(tuples)
+print(tuples)
+print('tuple number:', len(tuples))

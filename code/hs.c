@@ -531,7 +531,7 @@ int hs_insrt_rule(struct rng_rule *p_r, void *userdata)
                 p_sn->p_tn = p_sn->p_tn->child[0];
             }
         }
-        p_sn->p_tn->thresh.u32 = p_r->pri;
+        p_sn->p_tn->thresh.u32 = p_r->pri-1;
         SAFE_FREE(p_sn);
     }
     SAFE_FREE(p_sh);
@@ -569,7 +569,7 @@ int hs_classify(const struct packet *pkt, const void *userdata)
             node = node->child[1];
         }
     }
-
+    // in the leaves, the id is stored in thresh
     return node->thresh.u32;
 }
 
@@ -813,6 +813,7 @@ int hs_build_estimate(const struct rule_set *rs, void *userdata) {
     }
 
     if (estimate_build_hs_tree(rs, root) == 0) {
+        float adapted_factor = 1;
         printf("Overlap density = ");
         for (i = 0; i < DIM_MAX; i++) {
             printf("%f ", build_estimator.overlap_density[i]);
@@ -829,8 +830,12 @@ int hs_build_estimate(const struct rule_set *rs, void *userdata) {
                          /(float)build_estimator.segment_sum;
         build_estimator.avg_density = avg_density;
         printf("Average density = %f \n", avg_density);
+        // adapted
+        if(avg_density<10)
+            adapted_factor = 100;
+        printf("Adapted_factor = %f \n", adapted_factor);
         printf("Building rule num = %d \n", rs->num);
-        estimate_build_time=time_base_operation*rs->num*avg_density;
+        estimate_build_time=adapted_factor*time_base_operation*rs->num*avg_density;
         printf("Estimated time:%f \n", estimate_build_time);
     } else {
         *(struct hs_node **) userdata = NULL;

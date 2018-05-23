@@ -1,22 +1,32 @@
-#! /usr/bin/python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+    Description : remove id to rulesets
+    Author      : Nan Zhou
+    Date        : May 17, 2018
+"""
 
-import sys
+import argparse
 
-def main():
+def main(fname):
     traces = []
 
-    with open('%s' % sys.argv[1]) as fi:
-        for i in fi.readlines():
+    with open(fname, 'r') as fin:
+        for i in fin.readlines():
             traces.append(i)
 
-    with open('%s' % sys.argv[1], 'w') as fo:
+    with open(fname, 'w') as fout:
         for t in traces:
             ts = t.split(' ')
             new_t = ''
             for t in ts[:-1]:
                 new_t = new_t + t + ' '
             new_t = new_t[:-1]
-            fo.write('%s\n' % new_t)
+            fout.write('%s\n' % new_t)
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("file", type=str, help="file name")
+    args = parser.parse_args()
+
+    main(args.file)
