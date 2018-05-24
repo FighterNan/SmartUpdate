@@ -1,0 +1,777 @@
+alogrithm_0_100
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/rules/ipc1_1K
+938 rules loaded
+
+Estimate before building
+Overlap density = 41.909286 53.889008 42.153683 47.847385 4.352188 
+Distribute = 612 816 52 82 12 
+Average density = 48.150963 
+Building rule num = 938 
+Estimated time:451656.031250 
+Estimating pass
+Time for estimating(us): 44452
+
+Building
+segment_num = 612 816 52 82 12 
+
+segment_total = 25552889856
+worst_depth = 26
+average_depth = 18.323019
+tree_node_num = 95529
+leaf_node_num = 95530
+total_memory = 1528472
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     510     2       
+10      1020    1016    4       
+11      2032    1963    69      
+12      3926    3630    296     
+13      7260    6195    1065    
+14      12390   9387    3003    
+15      18774   12276   6498    
+16      24552   13901   10651   
+17      27802   13711   14091   
+18      27422   11795   15627   
+19      23590   9019    14571   
+20      18038   6054    11984   
+21      12108   3483    8625    
+22      6966    1513    5453    
+23      3026    489     2537    
+24      978     72      906     
+25      144     4       140     
+26      8       0       8       
+
+Building pass
+Time for building(us): 779991
+Loading rules from ../test/my_rules/my_ipc1_100
+100 rules loaded
+
+Estimate before updating
+Overlap density = 65.303032 50.797981 43.030304 45.858585 4.646465 
+Meet = 6465 5029 4260 4540 460 
+Meet num = 20754
+Average seg depth = 16.323211
+Average density(by meet) = 51.618557
+Updating rule num = 100
+Base operation = 1.000000 
+Adapted factor = 6.000000 
+Estimated time:30971.134766 
+Estimating pass
+Time for estimating(us): 6565
+
+Updating
+
+worst_depth = 31
+average_depth = 19.005142
+tree_node_num = 137678
+leaf_node_num = 137679
+total_memory = 2202856
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     511     1       
+10      1022    1022    0       
+11      2044    2018    26      
+12      4036    3853    183     
+13      7706    6906    800     
+14      13812   11044   2768    
+15      22088   15267   6821    
+16      30534   18413   12121   
+17      36826   19352   17474   
+18      38704   17819   20885   
+19      35638   14643   20995   
+20      29286   10782   18504   
+21      21564   7178    14386   
+22      14356   4119    10237   
+23      8238    2181    6057    
+24      4362    1042    3320    
+25      2084    516     1568    
+26      1032    264     768     
+27      528     139     389     
+28      278     67      211     
+29      134     26      108     
+30      52      5       47      
+31      10      0       10      
+
+Updating pass
+Time for updating(us): 37962
+****************************** end *********************************
+alogrithm_0_300
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/rules/ipc1_1K
+938 rules loaded
+
+Estimate before building
+Overlap density = 41.909286 53.889008 42.153683 47.847385 4.352188 
+Distribute = 612 816 52 82 12 
+Average density = 48.150963 
+Building rule num = 938 
+Estimated time:451656.031250 
+Estimating pass
+Time for estimating(us): 44406
+
+Building
+segment_num = 612 816 52 82 12 
+
+segment_total = 25552889856
+worst_depth = 26
+average_depth = 18.323019
+tree_node_num = 95529
+leaf_node_num = 95530
+total_memory = 1528472
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     510     2       
+10      1020    1016    4       
+11      2032    1963    69      
+12      3926    3630    296     
+13      7260    6195    1065    
+14      12390   9387    3003    
+15      18774   12276   6498    
+16      24552   13901   10651   
+17      27802   13711   14091   
+18      27422   11795   15627   
+19      23590   9019    14571   
+20      18038   6054    11984   
+21      12108   3483    8625    
+22      6966    1513    5453    
+23      3026    489     2537    
+24      978     72      906     
+25      144     4       140     
+26      8       0       8       
+
+Building pass
+Time for building(us): 780414
+Loading rules from ../test/my_rules/my_ipc1_300
+296 rules loaded
+
+Estimate before updating
+Overlap density = 47.389832 78.101692 43.813560 46.647457 4.325424 
+Meet = 13980 23040 12925 13761 1276 
+Meet num = 64982
+Average seg depth = 16.323211
+Average density(by meet) = 56.564865
+Updating rule num = 296
+Base operation = 1.000000 
+Adapted factor = 6.000000 
+Estimated time:100459.203125 
+Estimating pass
+Time for estimating(us): 15303
+
+Updating
+
+worst_depth = 41
+average_depth = 20.575274
+tree_node_num = 215684
+leaf_node_num = 215685
+total_memory = 3450952
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     511     1       
+10      1022    1019    3       
+11      2038    2008    30      
+12      4016    3846    170     
+13      7692    6953    739     
+14      13906   11448   2458    
+15      22896   16647   6249    
+16      33294   21541   11753   
+17      43082   24911   18171   
+18      49822   25679   24143   
+19      51358   23967   27391   
+20      47934   20135   27799   
+21      40270   15560   24710   
+22      31120   11222   19898   
+23      22444   8120    14324   
+24      16240   5918    10322   
+25      11836   4306    7530    
+26      8612    3196    5416    
+27      6392    2339    4053    
+28      4678    1794    2884    
+29      3588    1343    2245    
+30      2686    972     1714    
+31      1944    661     1283    
+32      1322    431     891     
+33      862     270     592     
+34      540     185     355     
+35      370     99      271     
+36      198     55      143     
+37      110     22      88      
+38      44      11      33      
+39      22      3       19      
+40      6       1       5       
+41      2       0       2       
+
+Updating pass
+Time for updating(us): 90740
+****************************** end *********************************
+alogrithm_0_500
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/rules/ipc1_1K
+938 rules loaded
+
+Estimate before building
+Overlap density = 41.909286 53.889008 42.153683 47.847385 4.352188 
+Distribute = 612 816 52 82 12 
+Average density = 48.150963 
+Building rule num = 938 
+Estimated time:451656.031250 
+Estimating pass
+Time for estimating(us): 44401
+
+Building
+segment_num = 612 816 52 82 12 
+
+segment_total = 25552889856
+worst_depth = 26
+average_depth = 18.323019
+tree_node_num = 95529
+leaf_node_num = 95530
+total_memory = 1528472
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     510     2       
+10      1020    1016    4       
+11      2032    1963    69      
+12      3926    3630    296     
+13      7260    6195    1065    
+14      12390   9387    3003    
+15      18774   12276   6498    
+16      24552   13901   10651   
+17      27802   13711   14091   
+18      27422   11795   15627   
+19      23590   9019    14571   
+20      18038   6054    11984   
+21      12108   3483    8625    
+22      6966    1513    5453    
+23      3026    489     2537    
+24      978     72      906     
+25      144     4       140     
+26      8       0       8       
+
+Building pass
+Time for building(us): 779108
+Loading rules from ../test/my_rules/my_ipc1_500
+484 rules loaded
+
+Estimate before updating
+Overlap density = 71.927536 49.273293 41.867496 49.795033 4.333333 
+Meet = 34741 23799 20222 24051 2093 
+Meet num = 104906
+Average seg depth = 16.323211
+Average density(by meet) = 54.570992
+Updating rule num = 484
+Base operation = 1.000000 
+Adapted factor = 6.000000 
+Estimated time:158474.156250 
+Estimating pass
+Time for estimating(us): 24585
+
+Updating
+
+worst_depth = 44
+average_depth = 22.311377
+tree_node_num = 254097
+leaf_node_num = 254098
+total_memory = 4065560
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     511     1       
+10      1022    1020    2       
+11      2040    2000    40      
+12      4000    3794    206     
+13      7588    6730    858     
+14      13460   10739   2721    
+15      21478   14925   6553    
+16      29850   18552   11298   
+17      37104   20767   16337   
+18      41534   21236   20298   
+19      42472   20364   22108   
+20      40728   19021   21707   
+21      38042   17552   20490   
+22      35104   16133   18971   
+23      32266   15062   17204   
+24      30124   13790   16334   
+25      27580   12115   15465   
+26      24230   10341   13889   
+27      20682   8459    12223   
+28      16918   6480    10438   
+29      12960   4698    8262    
+30      9396    3218    6178    
+31      6436    2139    4297    
+32      4278    1423    2855    
+33      2846    947     1899    
+34      1894    600     1294    
+35      1200    381     819     
+36      762     254     508     
+37      508     148     360     
+38      296     82      214     
+39      164     52      112     
+40      104     32      72      
+41      64      15      49      
+42      30      5       25      
+43      10      1       9       
+44      2       0       2       
+
+Updating pass
+Time for updating(us): 89578
+****************************** end *********************************
+alogrithm_0_700
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/rules/ipc1_1K
+938 rules loaded
+
+Estimate before building
+Overlap density = 41.909286 53.889008 42.153683 47.847385 4.352188 
+Distribute = 612 816 52 82 12 
+Average density = 48.150963 
+Building rule num = 938 
+Estimated time:451656.031250 
+Estimating pass
+Time for estimating(us): 44426
+
+Building
+segment_num = 612 816 52 82 12 
+
+segment_total = 25552889856
+worst_depth = 26
+average_depth = 18.323019
+tree_node_num = 95529
+leaf_node_num = 95530
+total_memory = 1528472
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     510     2       
+10      1020    1016    4       
+11      2032    1963    69      
+12      3926    3630    296     
+13      7260    6195    1065    
+14      12390   9387    3003    
+15      18774   12276   6498    
+16      24552   13901   10651   
+17      27802   13711   14091   
+18      27422   11795   15627   
+19      23590   9019    14571   
+20      18038   6054    11984   
+21      12108   3483    8625    
+22      6966    1513    5453    
+23      3026    489     2537    
+24      978     72      906     
+25      144     4       140     
+26      8       0       8       
+
+Building pass
+Time for building(us): 779475
+Loading rules from ../test/my_rules/my_ipc1_700
+674 rules loaded
+
+Estimate before updating
+Overlap density = 63.072807 66.616638 41.257057 47.472511 4.181278 
+Meet = 42448 44833 27766 31949 2814 
+Meet num = 149810
+Average seg depth = 16.323211
+Average density(by meet) = 55.656815
+Updating rule num = 674
+Base operation = 1.000000 
+Adapted factor = 6.000000 
+Estimated time:225076.156250 
+Estimating pass
+Time for estimating(us): 32838
+
+Updating
+
+worst_depth = 44
+average_depth = 22.388159
+tree_node_num = 362373
+leaf_node_num = 362374
+total_memory = 5797976
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     511     1       
+10      1022    1021    1       
+11      2042    2013    29      
+12      4026    3848    178     
+13      7696    6977    719     
+14      13954   11584   2370    
+15      23168   17096   6072    
+16      34192   22756   11436   
+17      45512   27761   17751   
+18      55522   31214   24308   
+19      62428   33375   29053   
+20      66750   34033   32717   
+21      68066   33044   35022   
+22      66088   30259   35829   
+23      60518   26095   34423   
+24      52190   21072   31118   
+25      42144   16280   25864   
+26      32560   12279   20281   
+27      24558   9250    15308   
+28      18500   6790    11710   
+29      13580   4903    8677    
+30      9806    3480    6326    
+31      6960    2445    4515    
+32      4890    1637    3253    
+33      3274    997     2277    
+34      1994    556     1438    
+35      1112    285     827     
+36      570     140     430     
+37      280     65      215     
+38      130     35      95      
+39      70      21      49      
+40      42      15      27      
+41      30      13      17      
+42      26      8       18      
+43      16      4       12      
+44      8       0       8       
+
+Updating pass
+Time for updating(us): 219365
+****************************** end *********************************
+alogrithm_0_900
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/rules/ipc1_1K
+938 rules loaded
+
+Estimate before building
+Overlap density = 41.909286 53.889008 42.153683 47.847385 4.352188 
+Distribute = 612 816 52 82 12 
+Average density = 48.150963 
+Building rule num = 938 
+Estimated time:451656.031250 
+Estimating pass
+Time for estimating(us): 44500
+
+Building
+segment_num = 612 816 52 82 12 
+
+segment_total = 25552889856
+worst_depth = 26
+average_depth = 18.323019
+tree_node_num = 95529
+leaf_node_num = 95530
+total_memory = 1528472
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     510     2       
+10      1020    1016    4       
+11      2032    1963    69      
+12      3926    3630    296     
+13      7260    6195    1065    
+14      12390   9387    3003    
+15      18774   12276   6498    
+16      24552   13901   10651   
+17      27802   13711   14091   
+18      27422   11795   15627   
+19      23590   9019    14571   
+20      18038   6054    11984   
+21      12108   3483    8625    
+22      6966    1513    5453    
+23      3026    489     2537    
+24      978     72      906     
+25      144     4       140     
+26      8       0       8       
+
+Building pass
+Time for building(us): 780906
+Loading rules from ../test/my_rules/my_ipc1_900
+859 rules loaded
+
+Estimate before updating
+Overlap density = 54.930069 74.335663 41.729603 44.997669 4.018648 
+Meet = 47130 63780 35804 38608 3448 
+Meet num = 188770
+Average seg depth = 16.323211
+Average density(by meet) = 56.021591
+Updating rule num = 859
+Base operation = 1.000000 
+Adapted factor = 6.000000 
+Estimated time:288735.281250 
+Estimating pass
+Time for estimating(us): 42287
+
+Updating
+
+worst_depth = 50
+average_depth = 24.260986
+tree_node_num = 343734
+leaf_node_num = 343735
+total_memory = 5499752
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     510     2       
+10      1020    1018    2       
+11      2036    1995    41      
+12      3990    3790    200     
+13      7580    6757    823     
+14      13514   10935   2579    
+15      21870   15550   6320    
+16      31100   19591   11509   
+17      39182   22273   16909   
+18      44546   23211   21335   
+19      46422   22786   23636   
+20      45572   21604   23968   
+21      43208   20497   22711   
+22      40994   19477   21517   
+23      38954   18700   20254   
+24      37400   18040   19360   
+25      36080   17110   18970   
+26      34220   15887   18333   
+27      31774   14452   17322   
+28      28904   12892   16012   
+29      25784   11143   14641   
+30      22286   9535    12751   
+31      19070   8152    10918   
+32      16304   6910    9394    
+33      13820   5585    8235    
+34      11170   4317    6853    
+35      8634    3188    5446    
+36      6376    2349    4027    
+37      4698    1661    3037    
+38      3322    1156    2166    
+39      2312    776     1536    
+40      1552    512     1040    
+41      1024    328     696     
+42      656     216     440     
+43      432     128     304     
+44      256     98      158     
+45      196     48      148     
+46      96      25      71      
+47      50      12      38      
+48      24      8       16      
+49      16      1       15      
+50      2       0       2       
+
+Updating pass
+Time for updating(us): 241306
+****************************** end *********************************
+alogrithm_0_1k
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/rules/ipc1_1K
+938 rules loaded
+
+Estimate before building
+Overlap density = 41.909286 53.889008 42.153683 47.847385 4.352188 
+Distribute = 612 816 52 82 12 
+Average density = 48.150963 
+Building rule num = 938 
+Estimated time:451656.031250 
+Estimating pass
+Time for estimating(us): 44538
+
+Building
+segment_num = 612 816 52 82 12 
+
+segment_total = 25552889856
+worst_depth = 26
+average_depth = 18.323019
+tree_node_num = 95529
+leaf_node_num = 95530
+total_memory = 1528472
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     510     2       
+10      1020    1016    4       
+11      2032    1963    69      
+12      3926    3630    296     
+13      7260    6195    1065    
+14      12390   9387    3003    
+15      18774   12276   6498    
+16      24552   13901   10651   
+17      27802   13711   14091   
+18      27422   11795   15627   
+19      23590   9019    14571   
+20      18038   6054    11984   
+21      12108   3483    8625    
+22      6966    1513    5453    
+23      3026    489     2537    
+24      978     72      906     
+25      144     4       140     
+26      8       0       8       
+
+Building pass
+Time for building(us): 779608
+Loading rules from ../test/my_rules/my_ipc1_1k
+942 rules loaded
+
+Estimate before updating
+Overlap density = 51.480339 54.224228 41.387886 47.466526 4.145590 
+Meet = 48443 51025 38946 44666 3901 
+Meet num = 186981
+Average seg depth = 16.323211
+Average density(by meet) = 48.180607
+Updating rule num = 942
+Base operation = 1.000000 
+Adapted factor = 6.000000 
+Estimated time:272316.781250 
+Estimating pass
+Time for estimating(us): 45822
+
+Updating
+
+worst_depth = 51
+average_depth = 24.175974
+tree_node_num = 463312
+leaf_node_num = 463313
+total_memory = 7413000
+depth   node    intrnl  leaf
+0       1       1       0       
+1       2       2       0       
+2       4       4       0       
+3       8       8       0       
+4       16      16      0       
+5       32      32      0       
+6       64      64      0       
+7       128     128     0       
+8       256     256     0       
+9       512     511     1       
+10      1022    1022    0       
+11      2044    2013    31      
+12      4026    3871    155     
+13      7742    7082    660     
+14      14164   11857   2307    
+15      23714   17672   6042    
+16      35344   23640   11704   
+17      47280   28729   18551   
+18      57458   32401   25057   
+19      64802   34456   30346   
+20      68912   34753   34159   
+21      69506   33689   35817   
+22      67378   31447   35931   
+23      62894   28823   34071   
+24      57646   26004   31642   
+25      52008   23403   28605   
+26      46806   20932   25874   
+27      41864   18456   23408   
+28      36912   16085   20827   
+29      32170   13882   18288   
+30      27764   11966   15798   
+31      23932   10141   13791   
+32      20282   8252    12030   
+33      16504   6485    10019   
+34      12970   4904    8066    
+35      9808    3535    6273    
+36      7070    2404    4666    
+37      4808    1608    3200    
+38      3216    1071    2145    
+39      2142    673     1469    
+40      1346    395     951     
+41      790     244     546     
+42      488     151     337     
+43      302     103     199     
+44      206     62      144     
+45      124     39      85      
+46      78      21      57      
+47      42      11      31      
+48      22      5       17      
+49      10      2       8       
+50      4       1       3       
+51      2       0       2       
+
+Updating pass
+Time for updating(us): 309070
+****************************** end *********************************

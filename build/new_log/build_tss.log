@@ -1,0 +1,348 @@
+alogrithm_1_acl1
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1
+1835 rules loaded
+
+Estimate before building
+Tuple num = 32846
+Rule num = 1835
+Estimated time: -4791738.602896
+Estimating pass
+Time for estimating(us): 1043
+
+Building
+tuple num = 80
+hash items:1248
+hash_overhead:117504 bytes; total memory:135812 bytes
+Building pass
+Time for building(us): 1150
+
+Loading trace from ../test/traces/acl1_trace
+8140 packets loaded
+Searching
+Searching pass
+Time for searching(us): 49652
+Searching speed(pps): 163941
+****************************** end *********************************
+alogrithm_1_acl1_100
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_100
+130 rules loaded
+
+Estimate before building
+Tuple num = 32793
+Rule num = 130
+Estimated time: -5334437.190766
+Estimating pass
+Time for estimating(us): 54
+
+Building
+tuple num = 29
+hash items:130
+hash_overhead:23984 bytes; total memory:25846 bytes
+Building pass
+Time for building(us): 75
+
+Loading trace from ../test/traces/acl1_100_trace
+1000 packets loaded
+Searching
+Searching pass
+Time for searching(us): 1335
+Searching speed(pps): 749063
+****************************** end *********************************
+alogrithm_1_acl1_1K
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_1K
+1226 rules loaded
+
+Estimate before building
+Tuple num = 32835
+Rule num = 1226
+Estimated time: -4988293.088503
+Estimating pass
+Time for estimating(us): 288
+
+Building
+tuple num = 69
+hash items:1223
+hash_overhead:109768 bytes; total memory:127507 bytes
+Building pass
+Time for building(us): 694
+
+Loading trace from ../test/traces/acl1_1K_trace
+9380 packets loaded
+Searching
+Searching pass
+Time for searching(us): 21577
+Searching speed(pps): 434722
+****************************** end *********************************
+alogrithm_1_acl1_10K
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_10K
+12947 rules loaded
+
+Estimate before building
+Tuple num = 32876
+Rule num = 12947
+Estimated time: -1147865.514343
+Estimating pass
+Time for estimating(us): 2982
+
+Building
+tuple num = 109
+hash items:12931
+hash_overhead:841192 bytes; total memory:1028542 bytes
+Building pass
+Time for building(us): 8309
+
+Loading trace from ../test/traces/acl1_10K_trace
+97000 packets loaded
+Searching
+Searching pass
+Time for searching(us): 400804
+Searching speed(pps): 242013
+****************************** end *********************************
+alogrithm_1_fw1
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/fw1
+915 rules loaded
+
+Estimate before building
+Tuple num = 32988
+Rule num = 915
+Estimated time: -5139365.345126
+Estimating pass
+Time for estimating(us): 1601
+
+Building
+tuple num = 222
+hash items:915
+hash_overhead:179112 bytes; total memory:191901 bytes
+Building pass
+Time for building(us): 1625
+
+Loading trace from ../test/traces/fw1_trace
+2830 packets loaded
+Searching
+Searching pass
+Time for searching(us): 61615
+Searching speed(pps): 45930
+****************************** end *********************************
+alogrithm_1_fw1_100
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/fw1_100
+303 rules loaded
+
+Estimate before building
+Tuple num = 32938
+Rule num = 303
+Estimated time: -5324921.650979
+Estimating pass
+Time for estimating(us): 380
+
+Building
+tuple num = 174
+hash items:303
+hash_overhead:117192 bytes; total memory:121018 bytes
+Building pass
+Time for building(us): 456
+
+Loading trace from ../test/traces/fw1_100_trace
+920 packets loaded
+Searching
+Searching pass
+Time for searching(us): 11088
+Searching speed(pps): 82972
+****************************** end *********************************
+alogrithm_1_fw1_1K
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/fw1_1K
+3307 rules loaded
+
+Estimate before building
+Tuple num = 32991
+Rule num = 3307
+Estimated time: -4351182.892743
+Estimating pass
+Time for estimating(us): 3714
+
+Building
+tuple num = 225
+hash items:3307
+hash_overhead:316328 bytes; total memory:363815 bytes
+Building pass
+Time for building(us): 4378
+
+Loading trace from ../test/traces/fw1_1K_trace
+8050 packets loaded
+Searching
+Searching pass
+Time for searching(us): 170532
+Searching speed(pps): 47205
+****************************** end *********************************
+alogrithm_1_fw1_10K
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/fw1_10K
+32136 rules loaded
+
+Estimate before building
+Tuple num = 33005
+Rule num = 32136
+Estimated time: 5159671.534672
+Estimating pass
+Time for estimating(us): 33912
+
+Building
+tuple num = 238
+hash items:32136
+hash_overhead:2030400 bytes; total memory:2492422 bytes
+Building pass
+Time for building(us): 43477
+
+Loading trace from ../test/traces/fw1_10K_trace
+93250 packets loaded
+Searching
+Searching pass
+Time for searching(us): 2828050
+Searching speed(pps): 32973
+****************************** end *********************************
+alogrithm_1_ipc1
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1
+2180 rules loaded
+
+Estimate before building
+Tuple num = 33008
+Rule num = 2180
+Estimated time: -4728230.854316
+Estimating pass
+Time for estimating(us): 3115
+
+Building
+tuple num = 244
+hash items:2180
+hash_overhead:263648 bytes; total memory:293985 bytes
+Building pass
+Time for building(us): 3041
+
+Loading trace from ../test/traces/ipc1_trace
+17020 packets loaded
+Searching
+Searching pass
+Time for searching(us): 325443
+Searching speed(pps): 52297
+****************************** end *********************************
+alogrithm_1_ipc1_100
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_100
+146 rules loaded
+
+Estimate before building
+Tuple num = 32820
+Rule num = 146
+Estimated time: -5338008.780686
+Estimating pass
+Time for estimating(us): 97
+
+Building
+tuple num = 55
+hash items:146
+hash_overhead:39856 bytes; total memory:41839 bytes
+Building pass
+Time for building(us): 127
+
+Loading trace from ../test/traces/ipc1_100_trace
+990 packets loaded
+Searching
+Searching pass
+Time for searching(us): 4122
+Searching speed(pps): 240174
+****************************** end *********************************
+alogrithm_1_ipc1_1K
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_1K
+1223 rules loaded
+
+Estimate before building
+Tuple num = 32952
+Rule num = 1223
+Estimated time: -5026333.207653
+Estimating pass
+Time for estimating(us): 970
+
+Building
+tuple num = 186
+hash items:1223
+hash_overhead:175624 bytes; total memory:192433 bytes
+Building pass
+Time for building(us): 1407
+
+Loading trace from ../test/traces/ipc1_1K_trace
+9380 packets loaded
+Searching
+Searching pass
+Time for searching(us): 108795
+Searching speed(pps): 86217
+****************************** end *********************************
+alogrithm_1_ipc1_10K
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_10K
+12127 rules loaded
+
+Estimate before building
+Tuple num = 33077
+Rule num = 12127
+Estimated time: -1459357.207381
+Estimating pass
+Time for estimating(us): 12139
+
+Building
+tuple num = 310
+hash items:12127
+hash_overhead:883272 bytes; total memory:1051692 bytes
+Building pass
+Time for building(us): 17650
+
+Loading trace from ../test/traces/ipc1_10K_trace
+90640 packets loaded
+Searching
+Searching pass
+Time for searching(us): 1943884
+Searching speed(pps): 46628
+****************************** end *********************************
