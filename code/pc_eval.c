@@ -22,7 +22,7 @@
  *
  *                5. Support multi algorithms (Xiaohe Hu)
  *
- *                6. Move logic to *_sim.c
+ *                6. Add estimators of building time & updating time (Nan Zhou)
  */
 
 #include <stdio.h>

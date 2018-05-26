@@ -32,6 +32,7 @@ static int tpl_is_equal(int *t1, int *t2, int num)
 
 static char *create_key(int key_bytes, const union point *dim, int *tuple)
 {
+    // tuple[32, 32, 0, 16, 8]
     int j, offset = 0;
     union point p;
     char *key = calloc(key_bytes, sizeof *key);

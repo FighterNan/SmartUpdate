@@ -4,6 +4,7 @@
  *               Tuple Space Search
  *
  *       Author: Xiaohe Hu
+ *               Nan Zhou
  *
  * Organization: Network Security Laboratory (NSLab),
  *               Research Institute of Information Technology (RIIT),

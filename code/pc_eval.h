@@ -22,6 +22,8 @@
  *                4. Add split_range_rule function (Xiang Wang)
  *
  *                5. Support multi algorithms (Xiaohe Hu)
+ *
+ *                6. Add estimator of building time & updating time (Nan Zhou)
  */
 
 #ifndef __PC_EVAL_H__
