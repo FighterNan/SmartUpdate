@@ -58,25 +58,45 @@ def generate_traces(rule_set_path):
     subprocess.getoutput("./" + confs.TRACE_GENERATOR + " 1 0 10 " + rule_set_path)
     return rule_set_path+"_trace"
 
-def generate_combined_trace(rule_set_path, update_rule_set_path, out_path):
-    rule_set_path_temp = remove_id(rule_set_path, out_path)
-    update_rule_set_path_temp = remove_id(update_rule_set_path, out_path)
+def generate_combined_trace(rule_set_path, update_rule_set_path, out_prefix):
+    rule_set_path_temp = remove_id(rule_set_path, out_prefix)
+    update_rule_set_path_temp = remove_id(update_rule_set_path, out_prefix)
     updated_rule_set = combine_rule_sets([rule_set_path_temp, update_rule_set_path_temp])
     traces_path = generate_traces(updated_rule_set)
     add_id(updated_rule_set)
     return updated_rule_set, traces_path
 
+
 def hs_build(rule_set_path, traces):
-    return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a -0" + " -r " + rule_set_path + \
+    return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 0" + " -r " + rule_set_path + \
                                        " -t " + traces)
     build_time = get_info("Time for building(us):", return_strs.split('\n'))
     search_time = get_info("Time for searching(us):", return_strs.split('\n'))
     return build_time, search_time
 
 def hs_build_estimator(rule_set_path):
-    return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a -0" + " -e 1" + " -r " + rule_set_path + " -s 1")
+    return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 0" + " -e 1" + " -r " + rule_set_path + " -s 1")
     build_time = get_info("Estimated time:", return_strs.split('\n'))
     return build_time
+
+def hs_update(rule_set_path, update_rule_set_path, out_prefix):
+    _, traces_path = generate_combined_trace(rule_set_path, update_rule_set_path, out_prefix)
+    return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 0" + " -r " + rule_set_path + " -u " + update_rule_set_path+ \
+                                       " -t " + traces_path + " -s "+" 2")
+
+    update_time = get_info("Time for updating(us):", return_strs.split('\n'))
+    search_time = get_info("Time for searching(us):", return_strs.split('\n'))
+    packets_num = get_info("Packets loaded:", return_strs.split('\n'))
+    return update_time, search_time, packets_num
+
+def tss_update(rule_set_name, update_rule_set_name, out_prefix):
+    _, traces_path = generate_combined_trace(confs.range_rules_path + rule_set_name, confs.update_range_rules_path + update_rule_set_name, out_prefix)
+    return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 1" + " -r " + confs.prfx_rules_path+rule_set_name + " -u " + confs.update_prfx_rules_path+update_rule_set_name+ \
+                                       " -t " + traces_path+ " -s "+" 2")
+    update_time = get_info("Time for updating(us):", return_strs.split('\n'))
+    search_time = get_info("Time for searching(us):", return_strs.split('\n'))
+    packets_num = get_info("Packets loaded:", return_strs.split('\n'))
+    return update_time, search_time, packets_num
 
 if __name__ == "__main__":
     str = "Time for updating(us): 1388"

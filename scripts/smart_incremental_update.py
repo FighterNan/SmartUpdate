@@ -60,7 +60,7 @@ def classify_speed_first(rule_set, traces, out_path):
     for subset_name in subsets.keys():
         info = {}
         subset_full_name = out_path+"_"+subset_name
-        return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a -0" + " -e 1" + " -r " + subset_full_name + \
+        return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 0" + " -e 1" + " -r " + subset_full_name + \
                                            " -t " + traces)
         build_time = utils.get_info("Time for building(us):", return_strs.split('\n'))
         search_time = utils.get_info("Time for searching(us):", return_strs.split('\n'))
@@ -91,7 +91,7 @@ def update_speed_first(rule_set, traces, out_path):
             return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 1" + " -e 1" + " -r " + subset_full_name + \
                                                " -t " + traces)
         else:
-            return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a -0" + " -e 1" + " -r " + subset_full_name + \
+            return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 0" + " -e 1" + " -r " + subset_full_name + \
                                                " -t " + traces)
         build_time = utils.get_info("Time for building(us):", return_strs.split('\n'))
         search_time = utils.get_info("Time for searching(us):", return_strs.split('\n'))
@@ -103,6 +103,7 @@ def update_speed_first(rule_set, traces, out_path):
     print(infos)
     print("SmartUpdate build time:%s" % total_build_time)
     print("Search time:%s" % total_search_time)
+
 
 
 def main(rule_set_path, update_rule_set_path, out_path, strategy, tolerate):

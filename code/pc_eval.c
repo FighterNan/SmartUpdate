@@ -299,7 +299,7 @@ void load_trace(struct trace *t, const char *tf)
 
     fclose(trace_fp);
 
-    printf("%d packets loaded\n", t->num);
+    printf("Packets loaded:%d\n", t->num);
 
     return;
 }

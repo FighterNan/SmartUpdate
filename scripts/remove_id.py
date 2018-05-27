@@ -8,14 +8,14 @@
 
 import argparse
 
-def main(fname):
+def main(input_fname, output_fname):
     traces = []
 
-    with open(fname, 'r') as fin:
+    with open(input_fname, 'r') as fin:
         for i in fin.readlines():
             traces.append(i)
 
-    with open(fname, 'w') as fout:
+    with open(output_fname, 'w') as fout:
         for t in traces:
             ts = t.split(' ')
             new_t = ''
@@ -26,7 +26,8 @@ def main(fname):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("file", type=str, help="file name")
+    parser.add_argument("input", type=str, help="input file with id")
+    parser.add_argument("output", type=str, help="output file without id")
     args = parser.parse_args()
 
-    main(args.file)
+    main(args.input, args.output)
