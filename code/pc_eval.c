@@ -22,7 +22,7 @@
  *
  *                5. Support multi algorithms (Xiaohe Hu)
  *
- *                6. Move logic to *_sim.c
+ *                6. Add estimators of building time & updating time (Nan Zhou)
  */
 
 #include <stdio.h>
@@ -299,7 +299,7 @@ void load_trace(struct trace *t, const char *tf)
 
     fclose(trace_fp);
 
-    printf("%d packets loaded\n", t->num);
+    printf("Packets loaded:%d\n", t->num);
 
     return;
 }

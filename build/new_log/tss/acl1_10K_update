@@ -1,0 +1,240 @@
+alogrithm_1_100
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_10K
+12947 rules loaded
+
+Estimate before building
+Tuple num = 32873
+Rule num = 12947
+Estimated time: -1147267.674357
+Estimating pass
+Time for estimating(us): 2975
+
+Building
+tuple num = 109
+hash items:12931
+hash_overhead:841192 bytes; total memory:1028542 bytes
+Building pass
+Time for building(us): 8284
+Loading rules from ../test/my_p_rules/my_acl1_100
+126 rules loaded
+
+Estimate before updating
+Original tuple num = 109
+Original rule num = 12947
+Updating tuple num = 55
+Updating rule num = 126
+Estimated time: 191.239990
+Estimating pass
+Time for estimating: 80(us)
+
+Updating
+tuple num = 128
+hash items:13057
+hash_overhead:859192 bytes; total memory:1048364 bytes
+Updating pass
+Time for updating(us): 157
+****************************** end *********************************
+alogrithm_1_500
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_10K
+12947 rules loaded
+
+Estimate before building
+Tuple num = 32873
+Rule num = 12947
+Estimated time: -1147267.674357
+Estimating pass
+Time for estimating(us): 2961
+
+Building
+tuple num = 109
+hash items:12931
+hash_overhead:841192 bytes; total memory:1028542 bytes
+Building pass
+Time for building(us): 8023
+Loading rules from ../test/my_p_rules/my_acl1_500
+668 rules loaded
+
+Estimate before updating
+Original tuple num = 109
+Original rule num = 12947
+Updating tuple num = 133
+Updating rule num = 668
+Estimated time: 1527.449951
+Estimating pass
+Time for estimating: 354(us)
+
+Updating
+tuple num = 183
+hash items:13584
+hash_overhead:920384 bytes; total memory:1117231 bytes
+Updating pass
+Time for updating(us): 808
+****************************** end *********************************
+alogrithm_1_1k
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_10K
+12947 rules loaded
+
+Estimate before building
+Tuple num = 32873
+Rule num = 12947
+Estimated time: -1147267.674357
+Estimating pass
+Time for estimating(us): 2965
+
+Building
+tuple num = 109
+hash items:12931
+hash_overhead:841192 bytes; total memory:1028542 bytes
+Building pass
+Time for building(us): 7969
+Loading rules from ../test/my_p_rules/my_acl1_1k
+1246 rules loaded
+
+Estimate before updating
+Original tuple num = 109
+Original rule num = 12947
+Updating tuple num = 211
+Updating rule num = 1246
+Estimated time: 3763.539795
+Estimating pass
+Time for estimating: 765(us)
+
+Updating
+tuple num = 245
+hash items:14133
+hash_overhead:986840 bytes; total memory:1191633 bytes
+Updating pass
+Time for updating(us): 1663
+****************************** end *********************************
+alogrithm_1_5k
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_10K
+12947 rules loaded
+
+Estimate before building
+Tuple num = 32875
+Rule num = 12947
+Estimated time: -1147666.224348
+Estimating pass
+Time for estimating(us): 2961
+
+Building
+tuple num = 109
+hash items:12931
+hash_overhead:841192 bytes; total memory:1028542 bytes
+Building pass
+Time for building(us): 8023
+Loading rules from ../test/my_p_rules/my_acl1_5k
+6018 rules loaded
+
+Estimate before updating
+Original tuple num = 109
+Original rule num = 12947
+Updating tuple num = 384
+Updating rule num = 6018
+Estimated time: 28929.539062
+Estimating pass
+Time for estimating: 4644(us)
+
+Updating
+tuple num = 389
+hash items:18715
+hash_overhead:1332520 bytes; total memory:1603908 bytes
+Updating pass
+Time for updating(us): 8045
+****************************** end *********************************
+alogrithm_1_7k
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_10K
+12947 rules loaded
+
+Estimate before building
+Tuple num = 32876
+Rule num = 12947
+Estimated time: -1147865.514343
+Estimating pass
+Time for estimating(us): 2959
+
+Building
+tuple num = 109
+hash items:12931
+hash_overhead:841192 bytes; total memory:1028542 bytes
+Building pass
+Time for building(us): 8029
+Loading rules from ../test/my_p_rules/my_acl1_7k
+8964 rules loaded
+
+Estimate before updating
+Original tuple num = 109
+Original rule num = 12947
+Updating tuple num = 405
+Updating rule num = 8964
+Estimated time: 45252.808594
+Estimating pass
+Time for estimating: 7082(us)
+
+Updating
+tuple num = 410
+hash items:21703
+hash_overhead:1518600 bytes; total memory:1833270 bytes
+Updating pass
+Time for updating(us): 11540
+****************************** end *********************************
+alogrithm_1_10k
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/acl1_10K
+12947 rules loaded
+
+Estimate before building
+Tuple num = 32873
+Rule num = 12947
+Estimated time: -1147267.674357
+Estimating pass
+Time for estimating(us): 2961
+
+Building
+tuple num = 109
+hash items:12931
+hash_overhead:841192 bytes; total memory:1028542 bytes
+Building pass
+Time for building(us): 8010
+Loading rules from ../test/my_p_rules/my_acl1_10k
+13259 rules loaded
+
+Estimate before updating
+Original tuple num = 109
+Original rule num = 12947
+Updating tuple num = 419
+Updating rule num = 13259
+Estimated time: 69127.617188
+Estimating pass
+Time for estimating: 10737(us)
+
+Updating
+tuple num = 425
+hash items:26048
+hash_overhead:1781824 bytes; total memory:2159454 bytes
+Updating pass
+Time for updating(us): 16173
+****************************** end *********************************

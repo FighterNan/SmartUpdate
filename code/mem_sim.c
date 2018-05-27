@@ -26,10 +26,12 @@ static struct {
     char *trace_file;
     int algrthm_id;
     int estimate;
+    int system;
 } cfg = {
     NULL,
     NULL,
     NULL,
+    0,
     0,
     0
 };
@@ -45,6 +47,7 @@ static void print_help(void)
         "  -u, --update FILE  specify a update rule file for searching\n"
         "  -a, --algorithm ID specify an algorithm, 0:HyperSplit, 1:TSS\n"
         "  -e  --estimate     specify mode of the estimator, 0:Sleep, 1:Enable\n"
+        "  -s  --system       specify mode of the system, 0:build verifier, 1:build estimator, 2:update verifier, 3:update estimator\n"
         "\n";
 
     printf("%s", help);
@@ -56,7 +59,7 @@ static void parse_args(int argc, char *argv[])
     int option;
 
 
-    static const char *optstr = "hr:t:u:a:e:";
+    static const char *optstr = "hr:t:u:a:e:s:";
     static struct option longopts[] = {
         {"help", no_argument, NULL, 'h'},
         {"rule", required_argument, NULL, 'r'},
@@ -64,6 +67,7 @@ static void parse_args(int argc, char *argv[])
         {"update", required_argument, NULL, 'u'},
         {"algorithm", required_argument, NULL, 'a'},
         {"estimate", required_argument, NULL, 'e'},
+        {"system", required_argument, NULL, 's'},
         {NULL, 0, NULL, 0}
     };
 
@@ -99,6 +103,11 @@ static void parse_args(int argc, char *argv[])
             assert(cfg.estimate >= SLEEP && cfg.estimate < ESTIMATE_MODE_NUM);
             break;
 
+        case 's':
+            cfg.system=atoi(optarg);
+            assert(cfg.system >= VERIFY_BUILD && cfg.system < SYSTEM_MODE_NUM);
+            break;
+
         default:
             print_help();
             exit(-1);
@@ -128,7 +137,20 @@ int main(int argc, char *argv[])
 
     if(cfg.estimate==ENABLE)
         printf("Note: estimator has been enabled!\n");
-
+    switch (cfg.system){
+        case VERIFY_BUILD:
+            printf("System is in build verifier mode\n");
+            break;
+        case ESTIMATE_BUILD:
+            printf("System is in build estimator mode\n");
+            break;
+        case VERIFY_UPDATE:
+            printf("System is in update verifier mode\n");
+            break;
+        case ESTIMATE_UPDATE:
+            printf("System is in update estimator mode\n");
+            break;
+    }
 
     /*
      * Building
@@ -163,26 +185,33 @@ int main(int argc, char *argv[])
 
     }
 
-    printf("\n");
-    printf("Building\n");
+    if (cfg.system!=ESTIMATE_BUILD) {
+        printf("\n");
+        printf("Building\n");
 
-    gettimeofday(&starttime, NULL);
-    if (algrthms[cfg.algrthm_id].build(&rule_set, &root) != 0) {
-        fprintf(stderr, "Building failed\n");
-        unload_rules(&rule_set);
-        exit(-1);
+        gettimeofday(&starttime, NULL);
+        if (algrthms[cfg.algrthm_id].build(&rule_set, &root) != 0) {
+            fprintf(stderr, "Building failed\n");
+            unload_rules(&rule_set);
+            exit(-1);
+        }
+        gettimeofday(&stoptime, NULL);
+        timediff = make_timediff(&starttime, &stoptime);
+
+        printf("Building pass\n");
+        printf("Time for building(us): %llu\n", timediff);
     }
-    gettimeofday(&stoptime, NULL);
-    timediff = make_timediff(&starttime, &stoptime);
-
-    printf("Building pass\n");
-    printf("Time for building(us): %llu\n", timediff);
 
 //    unload_rules(&rule_set);
 
     /*
      * Updating
      */
+    if ((cfg.system != VERIFY_UPDATE || cfg.system != ESTIMATE_UPDATE) && cfg.trace_file == NULL) {
+        printf("****************************** end *********************************\n");
+        return 0;
+    }
+
     if (cfg.u_rule_file != NULL) {
 
         algrthms[cfg.algrthm_id].load_rules(&u_rule_set, cfg.u_rule_file);
@@ -201,22 +230,24 @@ int main(int argc, char *argv[])
             }
         }
 
-        printf("\n");
-        printf("Updating\n");
-        gettimeofday(&starttime, NULL);
+        if (cfg.system==VERIFY_UPDATE) {
+            printf("\n");
+            printf("Updating\n");
+            gettimeofday(&starttime, NULL);
 
-        if (algrthms[cfg.algrthm_id].insrt_update(&u_rule_set, &root) != 0) {
-            fprintf(stderr, "Updating failed\n");
+            if (algrthms[cfg.algrthm_id].insrt_update(&u_rule_set, &root) != 0) {
+                fprintf(stderr, "Updating failed\n");
+                unload_rules(&u_rule_set);
+                exit(-1);
+            }
+            gettimeofday(&stoptime, NULL);
+            timediff = make_timediff(&starttime, &stoptime);
+
+            printf("Updating pass\n");
+            printf("Time for updating(us): %llu\n", timediff);
+
             unload_rules(&u_rule_set);
-            exit(-1);
         }
-        gettimeofday(&stoptime, NULL);
-        timediff = make_timediff(&starttime, &stoptime);
-
-        printf("Updating pass\n");
-        printf("Time for updating(us): %llu\n", timediff);
-
-        unload_rules(&u_rule_set);
     }
 
     /*

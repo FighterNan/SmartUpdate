@@ -22,6 +22,8 @@
  *                4. Add split_range_rule function (Xiang Wang)
  *
  *                5. Support multi algorithms (Xiaohe Hu)
+ *
+ *                6. Add estimator of building time & updating time (Nan Zhou)
  */
 
 #ifndef __PC_EVAL_H__
@@ -62,6 +64,15 @@ enum {
     ESTIMATE_MODE_NUM = 2,
     ADAPTED_RULE_NUM = 100
 };
+
+enum {
+    VERIFY_BUILD = 0,
+    ESTIMATE_BUILD = 1,
+    VERIFY_UPDATE = 2,
+    ESTIMATE_UPDATE = 3,
+    SYSTEM_MODE_NUM = 4,
+};
+
 
 enum {
     DIM_INV = -1,

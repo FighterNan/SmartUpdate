@@ -6,6 +6,7 @@
  *       Author: Yaxuan Qi
  *               Xiang Wang
  *               Xiaohe Hu
+ *               Nan Zhou
  *
  * Organization: Network Security Laboratory (NSLab),
  *               Research Institute of Information Technology (RIIT),

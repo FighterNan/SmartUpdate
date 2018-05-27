@@ -1,0 +1,240 @@
+alogrithm_1_100
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_10K
+12127 rules loaded
+
+Estimate before building
+Tuple num = 33074
+Rule num = 12127
+Estimated time: -1458728.737395
+Estimating pass
+Time for estimating(us): 12195
+
+Building
+tuple num = 310
+hash items:12127
+hash_overhead:883272 bytes; total memory:1051692 bytes
+Building pass
+Time for building(us): 17654
+Loading rules from ../test/my_p_rules/my_ipc1_100
+115 rules loaded
+
+Estimate before updating
+Original tuple num = 310
+Original rule num = 12127
+Updating tuple num = 91
+Updating rule num = 115
+Estimated time: 419.289978
+Estimating pass
+Time for estimating: 118(us)
+
+Updating
+tuple num = 364
+hash items:12241
+hash_overhead:920760 bytes; total memory:1090739 bytes
+Updating pass
+Time for updating(us): 557
+****************************** end *********************************
+alogrithm_1_500
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_10K
+12127 rules loaded
+
+Estimate before building
+Tuple num = 33076
+Rule num = 12127
+Estimated time: -1459147.707386
+Estimating pass
+Time for estimating(us): 12149
+
+Building
+tuple num = 310
+hash items:12127
+hash_overhead:883272 bytes; total memory:1051692 bytes
+Building pass
+Time for building(us): 17412
+Loading rules from ../test/my_p_rules/my_ipc1_500
+717 rules loaded
+
+Estimate before updating
+Original tuple num = 310
+Original rule num = 12127
+Updating tuple num = 363
+Updating rule num = 717
+Estimated time: 4164.750000
+Estimating pass
+Time for estimating: 1287(us)
+
+Updating
+tuple num = 525
+hash items:12844
+hash_overhead:1048288 bytes; total memory:1226654 bytes
+Updating pass
+Time for updating(us): 3226
+****************************** end *********************************
+alogrithm_1_1k
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_10K
+12127 rules loaded
+
+Estimate before building
+Tuple num = 33074
+Rule num = 12127
+Estimated time: -1458728.737395
+Estimating pass
+Time for estimating(us): 12131
+
+Building
+tuple num = 310
+hash items:12127
+hash_overhead:883272 bytes; total memory:1051692 bytes
+Building pass
+Time for building(us): 17370
+Loading rules from ../test/my_p_rules/my_ipc1_1k
+1254 rules loaded
+
+Estimate before updating
+Original tuple num = 310
+Original rule num = 12127
+Updating tuple num = 427
+Updating rule num = 1254
+Estimated time: 8328.200195
+Estimating pass
+Time for estimating: 2334(us)
+
+Updating
+tuple num = 559
+hash items:13377
+hash_overhead:1096696 bytes; total memory:1282443 bytes
+Updating pass
+Time for updating(us): 5193
+****************************** end *********************************
+alogrithm_1_5k
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_10K
+12127 rules loaded
+
+Estimate before building
+Tuple num = 33077
+Rule num = 12127
+Estimated time: -1459357.207381
+Estimating pass
+Time for estimating(us): 12171
+
+Building
+tuple num = 310
+hash items:12127
+hash_overhead:883272 bytes; total memory:1051692 bytes
+Building pass
+Time for building(us): 17431
+Loading rules from ../test/my_p_rules/my_ipc1_5k
+5786 rules loaded
+
+Estimate before updating
+Original tuple num = 310
+Original rule num = 12127
+Updating tuple num = 907
+Updating rule num = 5786
+Estimated time: 66297.835938
+Estimating pass
+Time for estimating: 21574(us)
+
+Updating
+tuple num = 964
+hash items:17891
+hash_overhead:1584296 bytes; total memory:1832533 bytes
+Updating pass
+Time for updating(us): 29380
+****************************** end *********************************
+alogrithm_1_7k
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_10K
+12127 rules loaded
+
+Estimate before building
+Tuple num = 33074
+Rule num = 12127
+Estimated time: -1458728.737395
+Estimating pass
+Time for estimating(us): 12200
+
+Building
+tuple num = 310
+hash items:12127
+hash_overhead:883272 bytes; total memory:1051692 bytes
+Building pass
+Time for building(us): 17777
+Loading rules from ../test/my_p_rules/my_ipc1_7k
+8084 rules loaded
+
+Estimate before updating
+Original tuple num = 310
+Original rule num = 12127
+Updating tuple num = 935
+Updating rule num = 8084
+Estimated time: 96270.000000
+Estimating pass
+Time for estimating: 31686(us)
+
+Updating
+tuple num = 962
+hash items:20184
+hash_overhead:1720768 bytes; total memory:2000120 bytes
+Updating pass
+Time for updating(us): 39180
+****************************** end *********************************
+alogrithm_1_10k
+****************************** start *********************************
+Note: estimator has been enabled!
+
+Loading rule
+Loading rules from ../test/p_rules/ipc1_10K
+12127 rules loaded
+
+Estimate before building
+Tuple num = 33074
+Rule num = 12127
+Estimated time: -1458728.737395
+Estimating pass
+Time for estimating(us): 12154
+
+Building
+tuple num = 310
+hash items:12127
+hash_overhead:883272 bytes; total memory:1051692 bytes
+Building pass
+Time for building(us): 17441
+Loading rules from ../test/my_p_rules/my_ipc1_10k
+11431 rules loaded
+
+Estimate before updating
+Original tuple num = 310
+Original rule num = 12127
+Updating tuple num = 1042
+Updating rule num = 11431
+Estimated time: 149113.093750
+Estimating pass
+Time for estimating: 49389(us)
+
+Updating
+tuple num = 1074
+hash items:23519
+hash_overhead:1969480 bytes; total memory:2295198 bytes
+Updating pass
+Time for updating(us): 56093
+****************************** end *********************************
