@@ -66,6 +66,15 @@ enum {
 };
 
 enum {
+    VERIFY_BUILD = 0,
+    ESTIMATE_BUILD = 1,
+    VERIFY_UPDATE = 2,
+    ESTIMATE_UPDATE = 3,
+    SYSTEM_MODE_NUM = 4,
+};
+
+
+enum {
     DIM_INV = -1,
     DIM_SIP = 0,
     DIM_DIP = 1,

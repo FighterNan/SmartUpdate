@@ -11,6 +11,7 @@ from __future__ import division
 import IPy
 import argparse
 import confs
+import random
 
 full_range = IPy.IP("255.255.255.255").int()
 
@@ -52,7 +53,7 @@ def get_rule_cate(str_rule, thresh):
     else:
         return category["ls"]
 
-def group_once(ruleset, out_path, thresh):
+def group_by_category(ruleset, thresh):
     rules = {
         "ss":[],
         "sl":[],
@@ -60,38 +61,25 @@ def group_once(ruleset, out_path, thresh):
         "ll":[]
     }
 
-    with open(ruleset, 'r') as fin:
-        rules_list = fin.readlines()
-        for str_rule in rules_list:
-            if str_rule is None:
-                continue
-            rules[get_rule_cate(str_rule, thresh)].append(str_rule)
+    for str_rule in ruleset:
+        if str_rule is None:
+            continue
+        rules[get_rule_cate(str_rule, thresh)].append(str_rule)
 
     print("ss: %s; sl: %s; ls: %s; ll: %s" % (len(rules["ss"]), len(rules["sl"]), len(rules["ls"]), len(rules["ll"])))
     return rules
 
-def output_rulesets(rules, out_path):
-    with open(out_path+ "_"+ confs.GROUP_NAME["small_small"], 'w') as fout_ss, \
-         open(out_path+ "_"+ confs.GROUP_NAME["small_large"], 'w') as fout_sl, \
-         open(out_path+ "_"+ confs.GROUP_NAME["large_small"], 'w') as fout_ls, \
-         open(out_path+ "_"+ confs.GROUP_NAME["large_large"], 'w') as fout_ll:
-
-        if len(rules["ss"])>0:
-            for str in rules["ss"]:
-                fout_ss.write(str)
-        if len(rules["sl"])>0:
-            for str in rules["sl"]:
-                fout_sl.write(str)
-        if len(rules["ls"]) > 0:
-            for str in rules["ls"]:
-                fout_ls.write(str)
-        if len(rules["ll"]) > 0:
-            for str in rules["ll"]:
-                fout_ll.write(str)
+def output_rule_sets(rules_dict, out_path):
+    # rules is a dict of (key, list) pair
+    for subset_name in rules_dict.keys():
+        with open(out_path + "_" + subset_name, 'w') as fout:
+            if len(rules_dict[subset_name]) > 0:
+                for str in rules_dict[subset_name]:
+                    fout.write(str)
 
 def main(ruleset, outpath):
-    rulesets = group_once(ruleset, outpath, thresh=0.1)
-    output_rulesets(rulesets, outpath)
+    rulesets = group_by_category(ruleset, outpath, thresh=0.1)
+    output_rule_sets(rulesets, outpath)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
