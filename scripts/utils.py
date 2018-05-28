@@ -109,7 +109,7 @@ def os_command(cmd):
     args = shlex.split(cmd)
     process = subprocess.Popen(args, stdout=subprocess.PIPE)
     return_strs, _ = process.communicate()
-    return_strs = str(return_strs, encoding="utf8")
+    #return_strs = str(return_strs, encoding="utf8")
     return return_strs
 
 if __name__ == "__main__":
