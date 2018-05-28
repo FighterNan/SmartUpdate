@@ -41,8 +41,32 @@ def classify_speed_first(rule_set, traces_path, out_path):
     print(infos)
     return total_build_time, total_search_time
 
-
 def update_speed_first(rule_set, traces_path, out_path):
+    # firstly, it will divide the ruleset to four subsets
+    # will apply hs in ll and ss; apply tss in ls and sl
+    # rule_set here is a list
+    stepped_thresh = 0.1
+    subsets = group.group_by_category(rule_set, stepped_thresh)
+    group.output_rule_sets(subsets, out_path)
+    infos = []
+    total_build_time = 0
+    total_search_time = 0
+    for subset_name in subsets.keys():
+        info = {}
+        subset_full_name = out_path+"_"+subset_name
+        return_strs = utils.os_command("./" + confs.SMART_UPDATE + " -a 1" + " -r " + subset_full_name + \
+                                               " -t " + traces_path)
+        build_time = utils.get_info("Time for building(us):", return_strs.split('\n'))
+        search_time = utils.get_info("Time for searching(us):", return_strs.split('\n'))
+        total_build_time += float(build_time)
+        total_search_time += float(search_time)
+        info["build_" + subset_name] = build_time
+        info["search_" + subset_name] = search_time
+        infos.append(info)
+    print(infos)
+    return total_build_time, total_search_time
+
+def hybrid(rule_set, traces_path, out_path):
     # firstly, it will divide the ruleset to four subsets
     # will apply hs in ll and ss; apply tss in ls and sl
     # rule_set here is a list
@@ -80,6 +104,8 @@ def main(rule_set_path, traces_path, out_path, strategy, tolerate):
     if (strategy==1 and build_time>tolerate):
         build_time, search_time = classify_speed_first(rule_set, traces_path, out_path)
     elif (strategy==2 and build_time>tolerate):
+        build_time, search_time = hybrid(rule_set, traces_path, out_path)
+    elif (strategy == 3 and build_time > tolerate):
         build_time, search_time = update_speed_first(rule_set, traces_path, out_path)
     else:
         build_time, search_time = utils.hs_build(rule_set_path, traces_path)

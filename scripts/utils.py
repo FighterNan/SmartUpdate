@@ -75,6 +75,13 @@ def hs_build(rule_set_path, traces):
     search_time = get_info("Time for searching(us):", return_strs.split('\n'))
     return build_time, search_time
 
+def tss_build(rule_set_path, traces):
+    return_strs = os_command("./" + confs.SMART_UPDATE + " -a 1" + " -r " + rule_set_path + \
+                                       " -t " + traces)
+    build_time = get_info("Time for building(us):", return_strs.split('\n'))
+    search_time = get_info("Time for searching(us):", return_strs.split('\n'))
+    return build_time, search_time
+
 def hs_build_estimator(rule_set_path):
     return_strs = os_command("./" + confs.SMART_UPDATE + " -a 0" + " -e 1" + " -r " + rule_set_path + " -s 1")
     build_time = get_info("Estimated time:", return_strs.split('\n'))
