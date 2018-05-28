@@ -15,12 +15,14 @@ import utils
 import confs
 import shlex
 
-def classify_speed_first(rule_set, traces_path, out_path):
+
+def classify_speed_first(rule_set, traces_path, out_path, block_size):
     # firstly, it will divide the ruleset to four subsets
     # will apply hs in each subset
     # rule_set here is a list
     stepped_thresh = 0.1
-    subsets = group.group_by_category(rule_set, stepped_thresh)
+    subsets = group.group_by_category(rule_set, stepped_thresh, block_size)
+
     group.output_rule_sets(subsets, out_path)
 
     infos = []
@@ -41,11 +43,10 @@ def classify_speed_first(rule_set, traces_path, out_path):
     print(infos)
     return total_build_time, total_search_time
 
-def update_speed_first(rule_set, traces_path, out_path):
+def update_speed_first(rule_set, traces_path, out_path, block_size):
     # firstly, it will divide the ruleset to four subsets
     # will apply hs in ll and ss; apply tss in ls and sl
     # rule_set here is a list
-    block_size = 2
     subsets = group.group_by_num(rule_set, block_size)
     group.output_rule_sets(subsets, out_path)
     infos = []
@@ -67,12 +68,12 @@ def update_speed_first(rule_set, traces_path, out_path):
     print(infos)
     return total_build_time, total_search_time
 
-def hybrid(rule_set, traces_path, out_path):
+def hybrid(rule_set, traces_path, out_path, block_size):
     # firstly, it will divide the ruleset to four subsets
     # will apply hs in ll and ss; apply tss in ls and sl
     # rule_set here is a list
     stepped_thresh = 0.1
-    subsets = group.group_by_category(rule_set, stepped_thresh)
+    subsets = group.group_by_category(rule_set, stepped_thresh, block_size)
     group.output_rule_sets(subsets, out_path)
     infos = []
     total_build_time = 0
@@ -98,16 +99,16 @@ def hybrid(rule_set, traces_path, out_path):
     return total_build_time, total_search_time
 
 
-def main(rule_set_path, traces_path, out_path, strategy, tolerate):
+def main(rule_set_path, traces_path, out_path, strategy, tolerate, block_size):
     build_time = utils.hs_build_estimator(rule_set_path)
     print("Estimator: %s" % build_time)
     rule_set = utils.load_rule_set(rule_set_path)
     if (strategy==1 and build_time>tolerate):
-        build_time, search_time = classify_speed_first(rule_set, traces_path, out_path)
+        build_time, search_time = classify_speed_first(rule_set, traces_path, out_path, block_size)
     elif (strategy==2 and build_time>tolerate):
-        build_time, search_time = hybrid(rule_set, traces_path, out_path)
+        build_time, search_time = hybrid(rule_set, traces_path, out_path, block_size)
     elif (strategy == 3 and build_time > tolerate):
-        build_time, search_time = update_speed_first(rule_set, traces_path, out_path)
+        build_time, search_time = update_speed_first(rule_set, traces_path, out_path, block_size)
     else:
         build_time, search_time = utils.hs_build(rule_set_path, traces_path)
     return build_time, search_time
@@ -119,10 +120,10 @@ if __name__ == "__main__":
     parser.add_argument("traces", type=str, help="traces to do packet classification")
     parser.add_argument("out_path", type=str, help="output path for rules after grouping")
     parser.add_argument("-s", "--strategy", type=int, help="choose the strategy of SmartUpdate", default=1)
-    parser.add_argument("-t", "--tolerate", type=int, help="tolerable time for full-volume updating (us)", default=5*1e6)
+    parser.add_argument("-t", "--tolerate", type=int, help="tolerable time for full-volume updating (us)", default=1*1e6)
     args = parser.parse_args()
 
-    build_time, search_time = main(args.rule_set_path, args.traces, args.out_path, args.strategy, args.tolerate)
+    build_time, search_time = main(args.rule_set_path, args.traces, args.out_path, args.strategy, args.tolerate, 2)
 
     print("SmartUpdate build time:%s" % build_time)
     print("Search time:%s" % search_time)

@@ -68,16 +68,16 @@ def generate_combined_trace(rule_set_path, update_rule_set_path, out_prefix):
     return updated_rule_set, traces_path
 
 
-def hs_build(rule_set_path, traces):
+def hs_build(rule_set_path, traces_path):
     return_strs = os_command("./" + confs.SMART_UPDATE + " -a 0" + " -r " + rule_set_path + \
-                                       " -t " + traces)
+                                       " -t " + traces_path)
     build_time = get_info("Time for building(us):", return_strs.split('\n'))
     search_time = get_info("Time for searching(us):", return_strs.split('\n'))
     return build_time, search_time
 
-def tss_build(rule_set_path, traces):
+def tss_build(rule_set_path, traces_path):
     return_strs = os_command("./" + confs.SMART_UPDATE + " -a 1" + " -r " + rule_set_path + \
-                                       " -t " + traces)
+                                       " -t " + traces_path)
     build_time = get_info("Time for building(us):", return_strs.split('\n'))
     search_time = get_info("Time for searching(us):", return_strs.split('\n'))
     return build_time, search_time
@@ -109,7 +109,7 @@ def os_command(cmd):
     args = shlex.split(cmd)
     process = subprocess.Popen(args, stdout=subprocess.PIPE)
     return_strs, _ = process.communicate()
-    #return_strs = str(return_strs, encoding="utf8")
+    return_strs = str(return_strs, encoding="utf8")
     return return_strs
 
 if __name__ == "__main__":
