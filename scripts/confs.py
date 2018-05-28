@@ -20,7 +20,7 @@ GROUP_NAME = {
 }
 MAX_RULES_PER_SET = 3000
 
-range_rules_path = "../test/rules/"
-update_range_rules_path = "../test/my_rules/"
-prfx_rules_path = "../test/p_rules/"
-update_prfx_rules_path = "../test/my_p_rules/"
+RANGE_RULES_PATH = "../test/rules/"
+UPDATE_RANGE_RULES_PATH = "../test/my_rules/"
+PRFX_RULES_PATH = "../test/p_rules/"
+UPDATE_PREFX_RULES_PATH = "../test/my_p_rules/"

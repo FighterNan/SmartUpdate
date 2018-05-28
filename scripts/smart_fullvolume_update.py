@@ -13,6 +13,7 @@ import subprocess
 import group
 import utils
 import confs
+import shlex
 
 def classify_speed_first(rule_set, traces_path, out_path):
     # firstly, it will divide the ruleset to four subsets
@@ -28,7 +29,7 @@ def classify_speed_first(rule_set, traces_path, out_path):
     for subset_name in subsets.keys():
         info = {}
         subset_full_name = out_path+"_"+subset_name
-        return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 0" + " -r " + subset_full_name + \
+        return_strs = utils.os_command("./" + confs.SMART_UPDATE + " -a 0" + " -r " + subset_full_name + \
                                            " -t " + traces_path)
         build_time = utils.get_info("Time for building(us):", return_strs.split('\n'))
         search_time = utils.get_info("Time for searching(us):", return_strs.split('\n'))
@@ -56,10 +57,10 @@ def update_speed_first(rule_set, traces_path, out_path):
         subset_full_name = out_path+"_"+subset_name
         if (subset_name==confs.GROUP_NAME["small_large"] or subset_name==confs.GROUP_NAME["large_small"]):
             subset_full_name = utils.range2prefix(subset_full_name, subset_full_name)
-            return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 1" + " -r " + subset_full_name + \
+            return_strs = utils.os_command("./" + confs.SMART_UPDATE + " -a 1" + " -r " + subset_full_name + \
                                                " -t " + traces_path)
         else:
-            return_strs = subprocess.getoutput("./" + confs.SMART_UPDATE + " -a 0" + " -r " + subset_full_name + \
+            return_strs = utils.os_command("./" + confs.SMART_UPDATE + " -a 0" + " -r " + subset_full_name + \
                                                " -t " + traces_path)
         build_time = utils.get_info("Time for building(us):", return_strs.split('\n'))
         search_time = utils.get_info("Time for searching(us):", return_strs.split('\n'))
