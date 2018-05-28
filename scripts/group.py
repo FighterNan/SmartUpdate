@@ -69,6 +69,18 @@ def group_by_category(ruleset, thresh):
     print("ss: %s; sl: %s; ls: %s; ll: %s" % (len(rules["ss"]), len(rules["sl"]), len(rules["ls"]), len(rules["ll"])))
     return rules
 
+def group_by_num(ruleset, block_num):
+    rules = {}
+    block_lenth = int(len(ruleset) / block_num)
+    for i in range(0, block_num-1):
+        subset = ruleset[i*block_lenth:(i+1)*block_lenth-1]
+        rules[str(i)] = subset
+    rules[str(block_num-1)] = ruleset[(block_num - 1) * block_lenth:len(ruleset)-1]
+    for i in rules.keys():
+        print("%s: %s " % (i, len(rules[i])))
+    return rules
+
+
 def output_rule_sets(rules_dict, out_path):
     # rules is a dict of (key, list) pair
     for subset_name in rules_dict.keys():

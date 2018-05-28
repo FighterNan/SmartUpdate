@@ -45,8 +45,8 @@ def update_speed_first(rule_set, traces_path, out_path):
     # firstly, it will divide the ruleset to four subsets
     # will apply hs in ll and ss; apply tss in ls and sl
     # rule_set here is a list
-    stepped_thresh = 0.1
-    subsets = group.group_by_category(rule_set, stepped_thresh)
+    block_size = 2
+    subsets = group.group_by_num(rule_set, block_size)
     group.output_rule_sets(subsets, out_path)
     infos = []
     total_build_time = 0
