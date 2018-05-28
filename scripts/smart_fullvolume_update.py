@@ -54,6 +54,7 @@ def update_speed_first(rule_set, traces_path, out_path):
     for subset_name in subsets.keys():
         info = {}
         subset_full_name = out_path+"_"+subset_name
+        subset_full_name = utils.range2prefix(subset_full_name, subset_full_name)
         return_strs = utils.os_command("./" + confs.SMART_UPDATE + " -a 1" + " -r " + subset_full_name + \
                                                " -t " + traces_path)
         build_time = utils.get_info("Time for building(us):", return_strs.split('\n'))
