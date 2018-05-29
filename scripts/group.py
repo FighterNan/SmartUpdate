@@ -53,7 +53,8 @@ def get_rule_cate(str_rule, thresh):
     else:
         return category["ls"]
 
-def group_by_category(ruleset, thresh):
+def group_by_category(rule_set, thresh, block_size):
+
     rules = {
         "ss":[],
         "sl":[],
@@ -61,13 +62,37 @@ def group_by_category(ruleset, thresh):
         "ll":[]
     }
 
-    for str_rule in ruleset:
+    for str_rule in rule_set:
         if str_rule is None:
             continue
         rules[get_rule_cate(str_rule, thresh)].append(str_rule)
 
-    print("ss: %s; sl: %s; ls: %s; ll: %s" % (len(rules["ss"]), len(rules["sl"]), len(rules["ls"]), len(rules["ll"])))
+    keys = list(rules.keys())
+    for key in keys:
+        if len(rules[key])>5000:
+            random.shuffle(rules[key])
+            length = int(len(rules[key])/block_size)
+            for i in range(0, block_size-1):
+                rules[key + "_"+ str(i)] = rules[key][i*length:(i+1)*length-1]
+            rules[key + "_" + str(block_size-1)] = rules[key][(block_size-1)*length:len(rules[key])-1]
+            del rules[key]
+    for i in rules.keys():
+        print("%s: %s " % (i, len(rules[i])))
+
     return rules
+
+def group_by_num(rule_set, block_num):
+    random.shuffle(rule_set)
+    rules = {}
+    block_lenth = int(len(rule_set) / block_num)
+    for i in range(0, block_num-1):
+        subset = rule_set[i * block_lenth:(i + 1) * block_lenth - 1]
+        rules[str(i)] = subset
+    rules[str(block_num-1)] = rule_set[(block_num - 1) * block_lenth:len(rule_set) - 1]
+    for i in rules.keys():
+        print("%s: %s " % (i, len(rules[i])))
+    return rules
+
 
 def output_rule_sets(rules_dict, out_path):
     # rules is a dict of (key, list) pair
