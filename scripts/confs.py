@@ -7,8 +7,8 @@
     Date        : May 18, 2018
 """
 RULE_PATH = "test/"
-SMART_UPDATE = "../build/SmartUpdate"
-TRACE_GENERATOR = "../build/trace_generator"
+SMART_UPDATE = "../cmake-build-debug/SmartUpdate"
+TRACE_GENERATOR = "../cmake-build-debug/trace_generator"
 RANGE_TO_PREFIX = "range2prefix.py"
 REMOVE_ID = "remove_id.py"
 ADD_ID = "add_id.py"
