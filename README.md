@@ -10,16 +10,16 @@
 
 ``` Bash
 # how to build 
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make 
+mkdir build
+cd build
+cmake ..
+make 
 
 # how to run c codes
 # HyperSplit
-$ ./build/SmartUpdate -a 0 -e 1 -r test/rules/fw1_10K -t test/traces/fw1_10K_trace
+./build/SmartUpdate -a 0 -e 1 -r test/rules/fw1_10K -t test/traces/fw1_10K_trace
 # TSS
-$ ./build/SmartUpdate -a 1 -e 1 -r test/p_rules/fw1_10K -t test/traces/fw1_10K_trace
+./build/SmartUpdate -a 1 -e 1 -r test/p_rules/fw1_10K -t test/traces/fw1_10K_trace
 
 # how to run python codes
 python python some_script.py -h
